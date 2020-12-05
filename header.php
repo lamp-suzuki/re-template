@@ -1,7 +1,4 @@
-<?php
-$home = esc_url(home_url());
-$wp_url = get_template_directory_uri(); ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="utf-8">
@@ -9,24 +6,39 @@ $wp_url = get_template_directory_uri(); ?>
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class('drawer drawer--right'); ?>>
 <?php wp_body_open(); ?>
-<header>
-<nav class="site-header sticky-top py-1 bg-dark">
-<div class="container d-flex flex-column flex-md-row">
-<a class="py-2 text-white" href="#" aria-label="Product">LOGO</a>
-<div class="ml-md-auto">
-<a class="p-2 d-none d-md-inline-block text-white" href="#">Tour</a>
-<a class="p-2 d-none d-md-inline-block text-white" href="#">Product</a>
-<a class="p-2 d-none d-md-inline-block text-white" href="#">Features</a>
-<a class="p-2 d-none d-md-inline-block text-white" href="#">Enterprise</a>
-<a class="p-2 d-none d-md-inline-block text-white" href="#">Support</a>
-<a class="p-2 d-none d-md-inline-block text-white" href="#">Pricing</a>
-<a class="p-2 d-none d-md-inline-block text-white" href="#">Cart</a>
-</div>
-</div>
-</nav>
-</header>
-<!-- /header -->
 
-<main>
+<header role="banner" class="header">
+<h1 class="logo">
+<a href="<?php home_url(); ?>">
+<span><?php bloginfo('name'); ?></span>
+</a>
+</h1>
+<!-- .logo -->
+<div class="tel">
+<i class="fas fa-phone-volume"></i>
+<span>0120-00-0000</span>
+</div>
+<!-- .tel -->
+<div class="contact">
+<a href="" class="btn btn-primary">
+<i class="fas fa-envelope"></i>
+<span>ご相談フォーム</span>
+</a>
+</div>
+<!-- .contact -->
+<button type="button" class="drawer-toggle drawer-hamburger">
+<span class="drawer-hamburger-icon"></span>
+<span class="drawer-hamburger__txt">MENU</span>
+</button>
+<!-- .drawer-toggle -->
+<nav class="drawer-nav" role="navigation">
+<ul class="drawer-menu">
+<?php wp_list_pages('title_li='); ?>
+</ul>
+</nav>
+<!-- .drawer-nav -->
+</header>
+
+<main role="main">

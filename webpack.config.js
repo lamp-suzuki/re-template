@@ -42,6 +42,19 @@ module.exports = (env, argv) => ({
           "sass-loader",
         ],
       },
+      {
+        test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "./webfonts",
+              publicPath: "../webfonts",
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -49,6 +62,7 @@ module.exports = (env, argv) => ({
       $: "jquery",
       jQuery: "jquery",
       Popper: ["popper.js", "default"],
+      IScroll: "iscroll",
     }),
     new MiniCssExtractPlugin({
       filename: "../css/style.css",

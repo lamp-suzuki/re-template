@@ -1,0 +1,54 @@
+.drawer {
+  &-hamburger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $black;
+    width: 2.25rem;
+    padding: 18px 0.75rem 36px;
+    &:hover,
+    &:focus,
+    &:active {
+      outline: none;
+      background-color: $black;
+    }
+
+    &-icon {
+      margin-top: 5px;
+      // &::before {
+      //   top: -12px;
+      // }
+      // &::after {
+      //   top: 8px;
+      // }
+    }
+
+    &__txt {
+      position: absolute;
+      width: 100%;
+      bottom: 0.5rem;
+      left: 0;
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      color: $white;
+      font-size: 12px;
+      line-height: 1;
+      letter-spacing: normal;
+    }
+  }
+
+  &-menu {
+    margin-top: calc(60px + 2rem);
+  }
+}
+
+.drawer-hamburger-icon,
+.drawer-hamburger-icon:before,
+.drawer-hamburger-icon:after {
+  background-color: $white;
+}
+
+.drawer--right.drawer-open .drawer-hamburger {
+  right: 0;
+}

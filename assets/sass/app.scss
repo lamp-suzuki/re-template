@@ -1,8 +1,11 @@
 // bootstrap関連
-@import "custom-colors"; // テーマカラー
-@import "custom-font-size"; // テーマフォントサイズ
+@import "./variables";
 @import "~bootstrap/scss/bootstrap";
 
-@import "~@fortawesome/fontawesome-free/css/all.css";
+// drawer.js
+@import "~jquery-drawer/scss/drawer";
+
+// slick
+@import "~slick-carousel/slick/slick";
 
 @import "./component";

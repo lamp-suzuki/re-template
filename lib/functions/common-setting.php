@@ -60,15 +60,6 @@ function title_separator($sep)
 }
 add_filter('document_title_separator', 'title_separator');
 
-// 標準のjquery消去
-function my_delete_local_jquery()
-{
-    if (!is_admin() && !is_user_logged_in()) {
-        wp_deregister_script('jquery');
-    }
-}
-add_action('wp_enqueue_scripts', 'my_delete_local_jquery');
-
 // ウィジェット登録
 function arphabet_widgets_init()
 {
