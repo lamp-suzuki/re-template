@@ -1,0 +1,21 @@
+.heading {
+  &__h2 {
+    font-size: 1.5rem;
+    color: $primary;
+    font-weight: bold;
+    margin: 0 0 1em;
+    line-height: 1.5;
+  }
+  &__h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0 0 1em;
+    line-height: 1.5;
+  }
+  &__h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 0 1em;
+    line-height: 1.5;
+  }
+}

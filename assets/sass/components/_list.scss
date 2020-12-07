@@ -1,0 +1,12 @@
+.list {
+  &__check {
+    li {
+      list-style: none;
+      list-style-image: url('../images/icon_check.png');
+      margin-bottom: 1em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

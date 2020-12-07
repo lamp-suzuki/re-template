@@ -1,0 +1,23 @@
+.cta {
+  &__btns {
+    .heading__h2 {
+      font-size: 2rem;
+      text-align: center;
+      &::before,
+      &::after {
+        display: inline-block;
+        vertical-align: text-bottom;
+        color: $primary;
+        font-weight: bold;
+      }
+      &::before {
+        content: "＼";
+        margin-right: 0.5em;
+      }
+      &::after {
+        content: "／";
+        margin-left: 0.5em;
+      }
+    }
+  }
+}

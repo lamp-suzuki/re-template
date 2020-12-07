@@ -5,24 +5,22 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <?php wp_head(); ?>
 </head>
-
 <body <?php body_class('drawer drawer--right'); ?>>
 <?php wp_body_open(); ?>
-
 <header role="banner" class="header">
 <h1 class="logo">
-<a href="<?php home_url(); ?>">
+<a href="<?php echo home_url(); ?>">
 <span><?php bloginfo('name'); ?></span>
 </a>
 </h1>
 <!-- .logo -->
-<div class="tel">
-<i class="fas fa-phone-volume"></i>
+<a href="tel:0120-00-0000" class="tel">
+<i class="fas fa-phone-volume text-primary"></i>
 <span>0120-00-0000</span>
-</div>
+</a>
 <!-- .tel -->
 <div class="contact">
-<a href="" class="btn btn-primary">
+<a href="<?php echo home_url(); ?>/contact/" class="btn btn-primary">
 <i class="fas fa-envelope"></i>
 <span>ご相談フォーム</span>
 </a>
@@ -40,5 +38,4 @@
 </nav>
 <!-- .drawer-nav -->
 </header>
-
-<main role="main">
+<main id="main" role="main">

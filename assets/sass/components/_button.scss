@@ -1,0 +1,11 @@
+.btn {
+  position: relative;
+  box-shadow: 3px 3px 8px rgba($black, 0.3);
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    transform: translateY(-50%);
+  }
+}
