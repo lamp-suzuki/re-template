@@ -19,5 +19,36 @@
         margin-left: 0.5em;
       }
     }
+
+    &__list {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      .btn {
+        width: 31%;
+        padding: 1rem;
+        color: $white;
+        text-align: center;
+        svg {
+          position: static;
+          transform: none;
+        }
+        span {
+          display: block;
+          font-size: 1.8rem;
+          font-weight: bold;
+        }
+        &.tel {
+          background-color: #ff7800;
+        }
+        &.form {
+          background-color: $primary;
+        }
+        &.line {
+          background-color: #00b900;
+        }
+      }
+    }
   }
 }

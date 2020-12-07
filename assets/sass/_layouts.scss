@@ -1,5 +1,11 @@
 #main {
   padding-top: 63px;
+
+  & > section {
+    &:nth-of-type(2n) {
+      background-color: $light;
+    }
+  }
 }
 
 .sec {

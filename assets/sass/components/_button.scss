@@ -8,4 +8,8 @@
     left: 1.5rem;
     transform: translateY(-50%);
   }
+
+  &:hover {
+    box-shadow: none;
+  }
 }
