@@ -1,0 +1,23 @@
+.footer {
+  background-color: $light;
+  &__logo {
+    text-align: center;
+    line-height: normal;
+    margin: 0;
+    a {
+      font-size: 2rem;
+      font-weight: bold;
+      color: $primary;
+    }
+  }
+}
+
+.copyright {
+  display: block;
+  background-color: $primary;
+  color: $white;
+  text-align: center;
+  line-height: 1;
+  padding: 1rem;
+  font-size: 12px;
+}

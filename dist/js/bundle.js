@@ -94,7 +94,20 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
-  // drawer
+  // metaタグ
+  var ua = navigator.userAgent.toLowerCase();
+  var isiOS = ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1;
+
+  if (isiOS) {
+    var viewport = document.querySelector('meta[name="viewport"]');
+
+    if (viewport) {
+      var viewportContent = viewport.getAttribute("content");
+      viewport.setAttribute("content", viewportContent + ", user-scalable=no");
+    }
+  } // drawer
+
+
   $(".drawer").drawer(); // slick
 
   $(".home-slide").on("init reInit afterChange", function (event, slick, currentSlide, nextSlide) {

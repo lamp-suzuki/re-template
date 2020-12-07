@@ -1,0 +1,56 @@
+.post-list {
+  &__item {
+    position: relative;
+    display: block;
+    color: $body-color;
+    padding: 1.5rem 1.5rem 1.5rem 0;
+    border-top: 1px solid $gray-300;
+    &:hover {
+      color: $body-color;
+      text-decoration: none;
+    }
+    .meta {
+      display: flex;
+      align-items: center;
+      .date {
+        font-size: 0.875rem;
+        margin-right: 1em;
+        line-height: 1;
+      }
+      .cat {
+        min-width: 170px;
+        text-align: center;
+        border: 2px solid $primary;
+        background-color: $white;
+        color: $primary;
+        font-weight: bold;
+        font-size: 0.875rem;
+        line-height: 1;
+        padding: 0.25em 0.5em;
+      }
+    }
+    .ttl {
+      font-weight: bold;
+      font-size: 1.25rem;
+      margin: 1em 0;
+    }
+    .excerpt {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%) rotate(45deg);
+      width: 0.875rem;
+      height: 0.875rem;
+      border-top: 2px solid $primary;
+      border-right: 2px solid $primary;
+    }
+    &:last-child {
+      border-bottom: 1px solid $gray-300;
+    }
+  }
+}
