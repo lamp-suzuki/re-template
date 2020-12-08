@@ -8082,6 +8082,32 @@ img {
   .post-list__item:last-child {
     border-bottom: 1px solid #dee2e6; }
 
+.post-inner h2,
+.post-inner h3,
+.post-inner h4 {
+  font-weight: bold;
+  margin: 2em 0 1em; }
+
+.post-inner h2 {
+  font-size: 1.4rem;
+  color: #d20000; }
+
+.post-inner h3 {
+  font-size: 1rem; }
+
+.post-inner h4 {
+  font-size: 0.875rem; }
+
+.wp-block-group__inner-container {
+  padding: 1rem; }
+  .wp-block-group__inner-container h2:first-of-type,
+  .wp-block-group__inner-container h3:first-of-type,
+  .wp-block-group__inner-container h4:first-of-type,
+  .wp-block-group__inner-container h5:first-of-type {
+    margin-top: 0; }
+  .wp-block-group__inner-container > * {
+    margin-bottom: 0; }
+
 #main {
   padding-top: 63px; }
   #main > section:nth-of-type(2n) {

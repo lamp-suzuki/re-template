@@ -1,0 +1,16 @@
+.wp-block-group {
+  &__inner-container {
+    padding: 1rem;
+    h2,
+    h3,
+    h4,
+    h5 {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+    & > * {
+      margin-bottom: 0;
+    }
+  }
+}

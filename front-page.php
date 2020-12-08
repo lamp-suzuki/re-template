@@ -110,6 +110,9 @@ wp_reset_postdata();
 <section id="service" class="sec">
 <div class="container">
 <h2 class="heading__h2">サービスの特⻑</h2>
+<div class="post-inner">
+<?php the_content(); ?>
+</div>
 </div>
 </section>
 <!-- #service -->
