@@ -1,0 +1,107 @@
+.step-home {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+  &__inner {
+    position: relative;
+    text-align: center;
+    margin-right: 7.5%;
+    @include media-breakpoint-down(md) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      text-align: left;
+      margin-right: 0;
+      margin-bottom: 1.5rem;
+    }
+    .number {
+      display: block;
+      width: 130px;
+      height: 130px;
+      background-color: $white;
+      border: 5px solid $primary;
+      border-radius: 50%;
+      line-height: 1;
+      padding: 1.5em 1em;
+      margin: 0 auto 1rem;
+      @include media-breakpoint-down(md) {
+        width: 80px;
+        height: 80px;
+        border: 3px solid $primary;
+        padding: 1em;
+        margin: 0;
+      }
+      span {
+        display: block;
+        font-weight: bold;
+        color: $primary;
+        line-height: 1;
+        font-size: 1.5rem;
+        @include media-breakpoint-down(md) {
+          font-size: 1rem;
+          text-align: center;
+        }
+        &:last-child {
+          font-size: 2.85rem;
+          @include media-breakpoint-down(md) {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+    .text {
+      @include media-breakpoint-down(md) {
+        width: calc(100% - 80px - 1rem);
+      }
+      h3 {
+        font-size: 1.125rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 1em;
+        @include media-breakpoint-down(md) {
+          text-align: left;
+          font-size: 1rem;
+        }
+      }
+      p {
+        font-size: 0.75rem;
+        text-align: left;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 65px;
+      right: -7.5%;
+      transform: translate(100%, -50%);
+      display: block;
+      border-top: 1rem solid transparent;
+      border-bottom: 1rem solid transparent;
+      border-left: 1rem solid $gray-300;
+      @include media-breakpoint-down(md) {
+        top: auto;
+        bottom: -0.5rem;
+        right: auto;
+        left: 40px;
+        transform: translate(-50%, 0) rotate(90deg);
+        border-top: 0.7rem solid transparent;
+        border-bottom: 0.7rem solid transparent;
+        border-left: 0.7rem solid $gray-300;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+      @include media-breakpoint-down(md) {
+        margin-bottom: 0;
+      }
+      &::after {
+        content: none;
+      }
+    }
+  }
+}

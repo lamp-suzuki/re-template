@@ -5,6 +5,10 @@
     width: 230px;
     height: 230px;
     border-radius: 50%;
+    @include media-breakpoint-down(md) {
+      width: 100px;
+      height: 100px;
+    }
     img {
       position: absolute;
       top: 50%;
@@ -13,6 +17,16 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+  }
+}
+
+#greeting {
+  .img__circle {
+    @include media-breakpoint-down(md) {
+      margin-left: auto;
+      margin-top: -60px;
+      margin-bottom: -40px;
     }
   }
 }

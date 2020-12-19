@@ -1,0 +1,29 @@
+.badge {
+  &-area {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: $white;
+    color: $primary;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1;
+    padding: 1em 1.5em;
+    border-radius: 10rem;
+    box-shadow: 3px 3px 8px rgba($black, 0.3);
+    @include media-breakpoint-down(md) {
+      font-size: 0.875rem;
+      padding: 0.8em 1.25em;
+    }
+    &.active {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}
+
+.area-text {
+  &.active {
+    display: block !important;
+  }
+}

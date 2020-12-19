@@ -143,7 +143,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _sass_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/app.scss */ "./assets/sass/app.scss");
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var _sass_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/app.scss */ "./assets/sass/app.scss");
 /* harmony import */ var _sass_app_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_sass_app_scss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _fortawesome_fontawesome_free_js_all__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
 /* harmony import */ var _fortawesome_fontawesome_free_js_all__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all__WEBPACK_IMPORTED_MODULE_1__);
@@ -162,6 +162,23 @@ __webpack_require__(/*! jquery-drawer */ "./node_modules/jquery-drawer/dist/js/d
 
 
 __webpack_require__(/*! ./common */ "./assets/js/common.js");
+
+$(function () {
+  // 対応エリア
+  $(".badge-area").on("click", function () {
+    var id = $(this).attr("data-id");
+    $(".badge-area").removeClass("active");
+    $(this).addClass("active");
+    $(".area-text").removeClass("active");
+    $('[data-areaid="' + id + '"]').addClass("active");
+  }); // よくある質問
+
+  $(".faq__box").on("click", function () {
+    $(this).children("div").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 

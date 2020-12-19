@@ -1,0 +1,25 @@
+table,
+.table {
+  margin: 0;
+  width: 100%;
+  th,
+  td {
+    font-size: 0.875rem;
+    padding: 1em;
+    border: 1px solid $gray-300;
+    vertical-align: middle;
+    background-color: $white;
+  }
+  th {
+    font-weight: bold;
+    color: $primary;
+  }
+
+  &--normal {
+    th {
+      font-weight: normal;
+      color: $body-color;
+      background-color: $gray-100;
+    }
+  }
+}
