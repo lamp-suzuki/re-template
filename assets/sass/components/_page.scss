@@ -1,0 +1,13 @@
+.page {
+  &--title {
+    background-color: $gray-100;
+    padding: 3rem 0;
+    h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: $primary;
+      text-align: center;
+      margin: 0;
+    }
+  }
+}

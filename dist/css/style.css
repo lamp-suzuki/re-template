@@ -8546,6 +8546,16 @@ table,
     .faq__box.active h3::after {
       transform: rotate(0); }
 
+.page--title {
+  background-color: #f8f9fa;
+  padding: 3rem 0; }
+  .page--title h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #d20000;
+    text-align: center;
+    margin: 0; }
+
 .wp-block-group__inner-container {
   padding: 1rem; }
   .wp-block-group__inner-container h2:first-of-type,
