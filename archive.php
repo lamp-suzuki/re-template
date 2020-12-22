@@ -8,7 +8,7 @@
 <div class="container">
 <div class="row">
 <div class="col-lg-8 mb-lg-0 mb-5">
-<div class="post-list">
+<div class="post-list works-list">
 <?php
 if (have_posts()):
 while (have_posts()): the_post();

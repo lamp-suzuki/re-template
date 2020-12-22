@@ -1,0 +1,43 @@
+.sidebar {
+  &-inner {
+    position: relative;
+    display: block;
+    margin-bottom: 1.5rem;
+
+    & > ul {
+      padding: 1rem;
+      background-color: $gray-100;
+      li {
+        list-style: none;
+        margin-bottom: 1rem;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        a {
+          position: relative;
+          display: block;
+          font-size: 0.875rem;
+          color: $body-color;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            display: block;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-top: 1px solid $primary;
+            border-right: 1px solid $primary;
+            transform: translateY(-50%) rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+
+  &-ttl {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+}

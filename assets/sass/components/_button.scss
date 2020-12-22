@@ -63,3 +63,38 @@
     color: $body-color;
   }
 }
+
+.btn-back {
+  position: relative;
+  display: inline-block;
+  padding: 1.25rem 2rem;
+  min-width: 240px;
+  background-color: $body-color;
+  border: 1px solid $body-color;
+  color: $white;
+  text-align: center;
+  line-height: 1;
+  font-size: 0.875rem;
+  transition: all 0.3s;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%) rotate(-45deg);
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-top: 1px solid $white;
+    border-left: 1px solid $white;
+  }
+  &:hover,
+  &:active {
+    background-color: $white;
+    color: $body-color;
+    text-decoration: none;
+    &::before {
+      border-color: $body-color;
+    }
+  }
+}
