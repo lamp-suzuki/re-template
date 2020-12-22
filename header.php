@@ -35,6 +35,12 @@
 <ul class="drawer-menu">
 <?php wp_list_pages('title_li='); ?>
 </ul>
+<div class="contact">
+<a href="<?php echo home_url(); ?>/contact/" class="btn btn-primary">
+<i class="fas fa-envelope"></i>
+<span>ご相談フォーム</span>
+</a>
+</div>
 </nav>
 <!-- .drawer-nav -->
 </header>

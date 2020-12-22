@@ -43,6 +43,48 @@
 
   &-menu {
     margin-top: calc(60px + 2rem);
+    padding-left: 1.5em;
+    // @include media-breakpoint-down(md) {
+    //   margin-top: calc(60px + 2rem);
+    // }
+
+    .page_item {
+      margin-bottom: 1em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        position: relative;
+        display: block;
+        font-size: 0.875rem;
+        color: $body-color;
+        &::before {
+          content: "";
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 1em;
+          width: 0;
+          height: 0;
+          border-left: 0.4rem solid transparent;
+          border-right: 0.4rem solid transparent;
+          border-bottom: 0.7rem solid $primary;
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    & + .contact {
+      margin-top: 1.5rem;
+      @include media-breakpoint-down(md) {
+        padding: 0 1rem;
+        margin: 1.5rem auto 0;
+      }
+      .btn {
+        display: block;
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+    }
   }
 }
 

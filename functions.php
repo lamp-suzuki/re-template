@@ -11,3 +11,6 @@ require DIRECTORY.'/lib/functions/resources.php';
 
 // 管理画面のカスタマイズ
 require DIRECTORY.'/lib/functions/admin.php';
+
+// カスタム投稿の追加
+require DIRECTORY.'/lib/functions/custom-posts.php';

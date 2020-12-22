@@ -1,0 +1,98 @@
+.wpcf7 {
+  margin: 0 auto;
+  max-width: 640px;
+
+  .form-control {
+    border-color: $gray-200;
+    &:not(textarea):not([type="checkbox"]):not([type="radio"]) {
+      padding: 0.75rem 0.75rem;
+      height: calc(1.5em + 1.5rem + 2px);
+    }
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    font-size: 0.875rem;
+    margin: 2rem 0 1rem;
+    a {
+      text-decoration: underline;
+      color: $body-color;
+    }
+    &:first-of-type {
+      margin-top: 0;
+    }
+    &.must {
+      &::after {
+        content: "必須";
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 1em;
+        font-size: 11px;
+        background-color: $primary;
+        color: $white;
+        line-height: 1.25;
+        padding: 0.25em 0.5em;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  &-list-item {
+    @include media-breakpoint-down(md) {
+      display: block !important;
+      margin: 0 0 0.5rem !important;
+    }
+    &.first {
+      margin-left: 0;
+    }
+    label {
+      margin: 0;
+      input {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 3px;
+      }
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 0.75rem;
+        font-weight: normal;
+        line-height: 1;
+      }
+    }
+
+    .form-check-input {
+      position: static;
+      margin: 0 3px 0 0;
+    }
+  }
+
+  .wpcf7-acceptance {
+    span.wpcf7-list-item {
+      margin-left: 0;
+    }
+  }
+
+  .btn {
+    min-width: 240px;
+    padding: 1rem;
+  }
+
+  .confirm-box {
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: $white;
+    text-align: center;
+    span {
+      &.confirm,
+      &.wpcf7-form-control-wrap {
+        display: inline-block;
+        vertical-align: top;
+      }
+      &.confirm {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}

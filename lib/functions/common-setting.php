@@ -88,3 +88,6 @@ function gutenberg_support_setup()
     add_editor_style('editor-style.css');
 }
 add_action('after_setup_theme', 'gutenberg_support_setup');
+
+// CF7のp挿入取り消し
+add_filter('wpcf7_autop_or_not', '__return_false');
