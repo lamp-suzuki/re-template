@@ -1,31 +1,113 @@
 <?php
-
-// 投稿文字数列の追加
-function add_posts_columns_count($columns)
+function override_widget_categories()
 {
-    $columns['count'] = '文字数';
-    return $columns;
-}
-add_filter('manage_posts_columns', 'add_posts_columns_count');
-function custom_posts_columns_count($column_name, $post_id)
-{
-    if ('count' == $column_name) {
-        $count = mb_strlen(strip_tags(get_post_field('post_content', $post_id)));
-        echo $count;
+    class WP_Widget_Categories_Taxonomy extends WP_Widget_Categories
+    {
+        private $taxonomy = 'category';
+        public function widget($args, $instance)
+        {
+            if (!empty($instance['taxonomy'])) {
+                $this->taxonomy = $instance['taxonomy'];
+            }
+            add_filter('widget_categories_dropdown_args', array( $this, 'add_taxonomy_dropdown_args' ), 10);
+            add_filter('widget_categories_args', array( $this, 'add_taxonomy_dropdown_args' ), 10);
+            parent::widget($args, $instance);
+        }
+        public function update($new_instance, $old_instance)
+        {
+            $instance = parent::update($new_instance, $old_instance);
+            $taxonomies = $this->get_taxonomies();
+            $instance['taxonomy'] = 'category';
+            if (in_array($new_instance['taxonomy'], $taxonomies)) {
+                $instance['taxonomy'] = $new_instance['taxonomy'];
+            }
+            return $instance;
+        }
+        public function form($instance)
+        {
+            parent::form($instance);
+            $taxonomy = 'category';
+            if (!empty($instance['taxonomy'])) {
+                $taxonomy = $instance['taxonomy'];
+            }
+            $taxonomies = $this->get_taxonomies(); ?>
+            <p>
+                <label for="<?php echo $this->get_field_id('taxonomy'); ?>"><?php _e('Taxonomy:'); ?></label><br />
+                <select id="<?php echo $this->get_field_id('taxonomy'); ?>" name="<?php echo $this->get_field_name('taxonomy'); ?>">
+                    <?php foreach ($taxonomies as $value) : ?>
+                    <option value="<?php echo esc_attr($value); ?>"<?php selected($taxonomy, $value); ?>><?php echo get_taxonomy($value)->label; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </p>
+            <?php
+        }
+        public function add_taxonomy_dropdown_args($cat_args)
+        {
+            $cat_args['taxonomy'] = $this->taxonomy;
+            return $cat_args;
+        }
+        private function get_taxonomies()
+        {
+            $taxonomies = get_taxonomies(array(
+                'public' => true,
+            ));
+            return $taxonomies;
+        }
     }
+    unregister_widget('WP_Widget_Categories');
+    register_widget('WP_Widget_Categories_Taxonomy');
 }
-add_action('manage_posts_custom_column', 'custom_posts_columns_count', 10, 2);
+add_action('widgets_init', 'override_widget_categories');
 
 // サムネイル列の追加
-function add_posts_columns_thumbnail($columns)
+function add_posts_columns($columns, $post_type)
 {
-    global $post_type;
-    if (in_array($post_type, ['post'])) {
-        $columns['thumbnail'] = 'アイキャッチ';
+    if ($post_type === 'faq') {
+        $columns = [
+            'cb' => '<input type="checkbox" />',
+            'title' => 'タイトル',
+            'date' => '日時',
+            'author' => '作成者',
+        ];
+    } elseif ($post_type === 'works') {
+        $columns = [
+            'cb' => '<input type="checkbox" />',
+            'thumbnail' => 'アイキャッチ',
+            'title' => 'タイトル',
+            'taxonomy-workscat' => 'カテゴリー',
+            'date' => '日時',
+            'author' => '作成者',
+        ];
+    } elseif ($post_type === 'staff') {
+        $columns = [
+            'cb' => '<input type="checkbox" />',
+            'thumbnail' => '写真',
+            'title' => '名前',
+            'date' => '日時',
+            'author' => '作成者',
+        ];
+    } elseif ($post_type === 'review') {
+        $columns = [
+            'cb' => '<input type="checkbox" />',
+            'title' => 'タイトル',
+            'date' => '日時',
+            'author' => '作成者',
+        ];
+    } else {
+        $columns = [
+            'cb' => '<input type="checkbox" />',
+            'thumbnail' => 'アイキャッチ',
+            'title' => 'タイトル',
+            'categories' => 'カテゴリー',
+            'tags' => 'タグ',
+            'date' => '日時',
+            'author' => '作成者',
+        ];
     }
     return $columns;
 }
-add_filter('manage_posts_columns', 'add_posts_columns_thumbnail');
+add_filter('manage_posts_columns', 'add_posts_columns', 10, 2);
+
 function custom_posts_columns_thumbnail($column_name, $post_id)
 {
     if ('thumbnail' === $column_name) {
@@ -39,20 +121,3 @@ function custom_posts_columns_thumbnail($column_name, $post_id)
     }
 }
 add_action('manage_posts_custom_column', 'custom_posts_columns_thumbnail', 10, 2);
-
-
-function sort_posts_column($columns)
-{
-    $columns = [
-        'cb' => '<input type="checkbox" />',
-        'thumbnail' => 'アイキャッチ',
-        'title' => '記事タイトル',
-        'categories' => 'カテゴリー',
-        'tags' => 'タグ',
-        'count' => '記事文字数',
-        'date' => '日時',
-        'author' => '作成者',
-    ];
-    return $columns;
-}
-add_filter('manage_posts_columns', 'sort_posts_column');

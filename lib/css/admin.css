@@ -1,0 +1,27 @@
+.edit-post-layout__metaboxes {
+  margin-bottom: 2rem;
+}
+
+.custom--guroup {
+  display: block;
+  padding: 0.5rem 0;
+}
+
+.custom--label {
+  display: block;
+  margin: 0 0 0.5rem;
+  font-weight: bold;
+}
+
+.custom--textarea,
+.custom--input {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.custom--checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.5rem 0.25rem 0;
+}

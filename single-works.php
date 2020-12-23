@@ -4,9 +4,11 @@
 <h2>ブログ</h2>
 </div>
 </div>
+
 <?php
 // パンくず
 get_theme_breadcrumb(); ?>
+
 <section class="sec">
 <div class="container">
 <div class="row">
@@ -14,13 +16,15 @@ get_theme_breadcrumb(); ?>
 <?php
 $title = get_the_title();
 $permalink = get_the_permalink();
-$category_name = get_the_category()[0]->name;
+$category_name = get_the_terms(get_the_ID(), 'workscat')[0]->name;
 $time = get_the_time('Y/m/d');
 ?>
 <header class="post-header">
 <div class="meta">
 <span class="date"><?php echo $time; ?></span>
+<?php if ($category_name != '' && $category_name != null): ?>
 <span class="cat"><?php echo $category_name; ?></span>
+<?php endif; ?>
 </div>
 <h2><?php echo $title; ?></h2>
 <?php if (get_the_post_thumbnail_url(get_the_ID(), 'large') != null): ?>
@@ -31,6 +35,29 @@ $time = get_the_time('Y/m/d');
 </header>
 
 <article class="post-inner mt-5">
+<div class="mb-4">
+<table class="table table--normal">
+<tbody>
+<tr>
+<th>作業場所</th>
+<td><?php echo get_post_meta(get_the_ID(), 'works_place', true); ?></td>
+</tr>
+<tr>
+<th>作業時間</th>
+<td><?php echo get_post_meta(get_the_ID(), 'works_time', true); ?></td>
+</tr>
+<tr>
+<th>作業人数</th>
+<td><?php echo get_post_meta(get_the_ID(), 'works_workers', true); ?></td>
+</tr>
+<tr>
+<th>作業料金</th>
+<td><?php echo get_post_meta(get_the_ID(), 'works_price', true); ?></td>
+</tr>
+</tbody>
+</table>
+</div>
+
 <?php the_content(); ?>
 </article>
 
@@ -54,7 +81,7 @@ $time = get_the_time('Y/m/d');
 </div>
 <!-- /col-md-8 -->
 <div class="col-lg-4">
-<?php get_sidebar(); ?>
+<?php get_sidebar('works'); ?>
 </div>
 <!-- /col-md-4 -->
 </div>

@@ -7,7 +7,9 @@ get_header(); the_post(); ?>
 <h2><?php the_title(); ?></h2>
 </div>
 </div>
-
+<?php
+// パンくず
+get_theme_breadcrumb(); ?>
 <div class="sec">
 <div class="container">
 <div class="cta__contact">

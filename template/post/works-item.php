@@ -20,7 +20,9 @@ if ($thumbnail == null) {
 <div>
 <div class="meta">
 <span class="date"><?php echo $time; ?></span>
+<?php if ($category->name != '' && $category->name != null): ?>
 <span class="cat"><?php echo $category->name; ?></span>
+<?php endif; ?>
 </div>
 <h3 class="ttl"><?php echo $title; ?></h3>
 <p class="excerpt"><?php echo $content.'…'; ?></p>

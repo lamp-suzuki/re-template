@@ -64,8 +64,16 @@ add_filter('document_title_separator', 'title_separator');
 function arphabet_widgets_init()
 {
     register_sidebar([
-        'name' => 'ウイジェット',
+        'name' => 'ブログウイジェット',
         'id' => 'sidebar',
+        'before_widget' => '<div class="sidebar-inner">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="sidebar-ttl">',
+        'after_title' => '</h3>',
+    ]);
+    register_sidebar([
+        'name' => '実績ウイジェット',
+        'id' => 'sidebar-works',
         'before_widget' => '<div class="sidebar-inner">',
         'after_widget' => '</div>',
         'before_title' => '<h3 class="sidebar-ttl">',

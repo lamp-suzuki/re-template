@@ -13,6 +13,12 @@ function add_my_styles()
 }
 add_action('wp_enqueue_scripts', 'add_my_styles');
 
+function add_admin_css_js()
+{
+    wp_enqueue_style('admin_style', get_template_directory_uri().'/lib/css/admin.css');
+}
+  add_action('admin_enqueue_scripts', 'add_admin_css_js');
+
 // JSの管理
 function add_my_scripts()
 {

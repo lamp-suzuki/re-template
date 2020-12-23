@@ -14,3 +14,6 @@ require DIRECTORY.'/lib/functions/admin.php';
 
 // カスタム投稿の追加
 require DIRECTORY.'/lib/functions/custom-posts.php';
+
+// 独自関数
+require DIRECTORY.'/lib/functions/temp-func.php';

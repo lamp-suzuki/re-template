@@ -7,6 +7,9 @@ get_header(); the_post(); ?>
 <h2><?php the_title(); ?></h2>
 </div>
 </div>
+<?php
+// パンくず
+get_theme_breadcrumb(); ?>
 <section class="py-5">
 <div class="container">
 <div class="post-inner">

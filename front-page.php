@@ -15,7 +15,7 @@ get_template_part('template/home/slide'); ?>
 </div>
 <div class="col-lg-4">
 <div class="review-top bg-light p-4 text-center">
-<p class="review-top__count">4</p>
+<p class="review-top__count"><?php echo get_review_avg(); ?></p>
 <p class="review-top__stars">
 <i class="fas fa-star"></i>
 <i class="fas fa-star"></i>
@@ -24,7 +24,7 @@ get_template_part('template/home/slide'); ?>
 <i class="far fa-star"></i>
 </p>
 <p class="review-top__link">
-<a href="#">口コミ50件</a>
+<a href="#review">口コミ<?php echo number_format(get_review_counts()); ?>件</a>
 </p>
 </div>
 </div>
@@ -379,14 +379,13 @@ wp_reset_postdata();
 <?php
 $posts = get_posts([
     'posts_per_page' => 3,
-    'orderby' => 'date',
-    'order' => 'DESC'
+    'post_type' => 'works',
 ]);
 foreach ($posts as $post) {
     setup_postdata($post);
     set_query_var('title', get_the_title());
     set_query_var('permalink', get_the_permalink());
-    set_query_var('category', get_the_category()[0]);
+    set_query_var('category', get_the_terms(get_the_ID(), 'workscat')[0]);
     set_query_var('time', get_the_time('Y/m/d'));
     set_query_var('content', wp_strip_all_tags(mb_substr(get_the_content(), 0, 120, 'UTF-8'), true));
     set_query_var('thumbnail', get_the_post_thumbnail_url(get_the_ID(), 'large'));
@@ -458,69 +457,74 @@ wp_reset_postdata();
 </section>
 <!-- #flow -->
 
+<!-- スタッフ紹介 -->
+<?php
+$staffs_args = [
+    'posts_per_page' => -1,
+    'post_type' => 'staff',
+];
+$staffs = get_posts($staffs_args);
+if (is_array($staffs) && count($staffs) > 0): ?>
 <section id="staff" class="sec">
 <div class="container">
 <h2 class="heading__h2">スタッフ紹介</h2>
 <div class="staff-home">
+<?php
+foreach ($staffs as $staff):
+setup_postdata($staff);
+$id = $staff->ID;
+$name = get_the_title($id);
+?>
 <div class="staff-home__box">
+<?php if (has_post_thumbnail($id)): ?>
 <div class="thumbnail">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/greeting_sample.png" alt="">
+<img src="<?php echo get_the_post_thumbnail_url($id, 'large'); ?>" alt="<?php echo $name; ?>">
 </div>
+<?php endif; ?>
 <div class="text">
-<h3 class="name">山田 太郎</h3>
-<p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(50文字以内)</p>
+<h3 class="name"><?php echo $name; ?></h3>
+<p><?php echo strip_tags(strip_shortcodes(get_the_content())); ?></p>
 </div>
 </div>
 <!-- .staff-home__box -->
-<div class="staff-home__box">
-<div class="thumbnail">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/greeting_sample.png" alt="">
-</div>
-<div class="text">
-<h3 class="name">山田 太郎</h3>
-<p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(50文字以内)</p>
-</div>
-</div>
-<!-- .staff-home__box -->
-<div class="staff-home__box">
-<div class="thumbnail">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/greeting_sample.png" alt="">
-</div>
-<div class="text">
-<h3 class="name">山田 太郎</h3>
-<p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(50文字以内)</p>
-</div>
-</div>
-<!-- .staff-home__box -->
+<?php endforeach; ?>
+<?php wp_reset_postdata(); ?>
 </div>
 <!-- .staff-home -->
 </div>
 </section>
 <!-- #staff -->
+<?php endif; ?>
+<!-- スタッフ紹介 -->
 
+<?php
+$faqs_args = [
+    'posts_per_page' => -1,
+    'post_type' => 'faq',
+];
+$faqs = get_posts($faqs_args);
+if (is_array($faqs) && count($faqs) > 0): ?>
 <section id="faq" class="sec">
 <div class="container">
 <h2 class="heading__h2">よくある質問</h2>
 <div class="faq">
+<?php
+foreach ($faqs as $faq):
+setup_postdata($faq);
+$id = $faq->ID;
+?>
 <div class="faq__box">
-<h3>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</h3>
-<div>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</div>
+<h3><?php echo get_the_title($id); ?></h3>
+<div><?php echo strip_tags(strip_shortcodes(get_the_content())); ?></div>
 </div>
 <!-- .faq__box -->
-<div class="faq__box">
-<h3>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</h3>
-<div>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</div>
-</div>
-<!-- .faq__box -->
-<div class="faq__box">
-<h3>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</h3>
-<div>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</div>
-</div>
-<!-- .faq__box -->
+<?php endforeach; ?>
+<?php wp_reset_postdata(); ?>
 </div>
 </div>
 </section>
 <!-- #faq -->
+<?php endif; ?>
 
 <section id="company" class="sec">
 <div class="container">
