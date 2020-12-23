@@ -238,23 +238,40 @@ wp_reset_postdata();
 <i class="fas fa-star"></i>
 </div>
 <div class="font-weight-bold d-inline-flex align-items-center">
-<span>5</span>
+<span><?php echo get_review_avg(); ?></span>
 <span class="mx-2">|</span>
-<span>50件</span>
+<span><?php echo number_format(get_review_counts()); ?>件</span>
 </div>
 </div>
 </div>
 
 <div class="review-home">
+<?php
+$reviews = get_posts([
+    'posts_per_page' => -1,
+    'post_type' => 'review',
+]);
+foreach ($reviews as $review):
+setup_postdata($review);
+if (get_post_meta($review->ID, 'review_icon', true) == 0) {
+    $review_icon = get_template_directory_uri()."/dist/images/icon_man.png";
+} elseif (get_post_meta($review->ID, 'review_icon', true) == 1) {
+    $review_icon = get_template_directory_uri()."/dist/images/icon_woman.png";
+} elseif (get_post_meta($review->ID, 'review_icon', true) == 2) {
+    $review_icon = get_template_directory_uri()."/dist/images/icon_old_man.png";
+} elseif (get_post_meta($review->ID, 'review_icon', true) == 3) {
+    $review_icon = get_template_directory_uri()."/dist/images/icon_old_woman.png";
+}
+?>
 <div class="review-home__box">
 <div class="review-home__box--header">
 <div class="icon">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/icon_man.png" alt="男性">
+<img src="<?php echo $review_icon; ?>" alt="<?php echo get_post_meta($review->ID, 'customer_name', true); ?>">
 </div>
 <div class="info">
 <div>
-<span class="name">⼭田太郎さん｜不用品回収</span>
-<span class="time">2020年10月</span>
+<span class="name"><?php echo get_post_meta($review->ID, 'customer_name', true); ?>｜<?php echo get_post_meta($review->ID, 'works_genre', true); ?></span>
+<span class="time"><?php the_time('Y年n月'); ?></span>
 </div>
 <div class="star">
 <div class="text-warning">
@@ -264,108 +281,18 @@ wp_reset_postdata();
 <i class="fas fa-star"></i>
 <i class="fas fa-star"></i>
 </div>
-<div class="num">5</div>
+<div class="num"><?php echo get_post_meta($review->ID, 'stars', true); ?></div>
 </div>
 </div>
 </div>
 <!-- .review-home__box--header -->
 <div class="review-home__box--body">
-<p class="mb-0">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。
-<br>文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
-<br>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。(200文字以内)</p>
+<p class="mb-0"><?php echo nl2br(get_post_meta($review->ID, 'review_content', true)); ?></p>
 </div>
 </div>
 <!-- .review-home__box -->
-<div class="review-home__box">
-<div class="review-home__box--header">
-<div class="icon">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/icon_woman.png" alt="男性">
-</div>
-<div class="info">
-<div>
-<span class="name">⼭田太郎さん｜不用品回収</span>
-<span class="time">2020年10月</span>
-</div>
-<div class="star">
-<div class="text-warning">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-</div>
-<div class="num">5</div>
-</div>
-</div>
-</div>
-<!-- .review-home__box--header -->
-<div class="review-home__box--body">
-<p class="mb-0">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。
-<br>文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
-<br>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。(200文字以内)</p>
-</div>
-</div>
-<!-- .review-home__box -->
-<div class="review-home__box">
-<div class="review-home__box--header">
-<div class="icon">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/icon_old_man.png" alt="男性">
-</div>
-<div class="info">
-<div>
-<span class="name">⼭田太郎さん｜不用品回収</span>
-<span class="time">2020年10月</span>
-</div>
-<div class="star">
-<div class="text-warning">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-</div>
-<div class="num">5</div>
-</div>
-</div>
-</div>
-<!-- .review-home__box--header -->
-<div class="review-home__box--body">
-<p class="mb-0">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。
-<br>文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
-<br>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。(200文字以内)</p>
-</div>
-</div>
-<!-- .review-home__box -->
-<div class="review-home__box">
-<div class="review-home__box--header">
-<div class="icon">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/icon_old_woman.png" alt="男性">
-</div>
-<div class="info">
-<div>
-<span class="name">⼭田太郎さん｜不用品回収</span>
-<span class="time">2020年10月</span>
-</div>
-<div class="star">
-<div class="text-warning">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-</div>
-<div class="num">5</div>
-</div>
-</div>
-</div>
-<!-- .review-home__box--header -->
-<div class="review-home__box--body">
-<p class="mb-0">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。
-<br>文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
-<br>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。(200文字以内)</p>
-</div>
-</div>
-<!-- .review-home__box -->
+<?php endforeach; ?>
+<?php wp_reset_postdata(); ?>
 </div>
 <!-- .review-home -->
 </div>

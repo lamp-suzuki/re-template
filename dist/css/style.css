@@ -7760,7 +7760,6 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: #fff; }
   .breadcrumb--wrap {
     position: relative;
-    margin-bottom: 2rem;
     border-bottom: 1px solid #f8f9fa; }
   .breadcrumb li {
     list-style: none;

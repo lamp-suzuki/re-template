@@ -23,6 +23,11 @@ set_query_var('content', wp_strip_all_tags(mb_substr(get_the_content(), 0, 120, 
 get_template_part('template/post/works-item');
 endwhile; endif; ?>
 </div>
+<?php
+// ページネーション
+if (function_exists('pagenation')) {
+    pagenation();
+} ?>
 </div>
 <!-- /col-md-8 -->
 <div class="col-lg-4">

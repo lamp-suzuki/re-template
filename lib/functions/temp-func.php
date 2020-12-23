@@ -11,7 +11,7 @@ function get_review_avg()
 {
     global $wpdb;
     $query = "SELECT CAST(AVG(`meta_value`) AS DECIMAL(10,1)) FROM $wpdb->postmeta WHERE `meta_key`='stars'";
-    return (float)$wpdb->get_var($query);
+    return round((float)$wpdb->get_var($query), 1);
 }
 
 
@@ -66,4 +66,41 @@ function get_theme_breadcrumb()
     echo '</ol>';
     echo '</div>';
     echo '</div>';
+}
+
+// ページネーション
+function pagenation($pages = '', $range = 4)
+{
+    $showitems = ($range * 1)+1;
+    global $paged;
+    if (empty($paged)) {
+        $paged = 1;
+    }
+    if ($pages == '') {
+        global $wp_query;
+        $pages = $wp_query->max_num_pages;
+        if (!$pages) {
+            $pages = 1;
+        }
+    }
+    if (1 != $pages) {
+        echo '<nav class="mt-5" aria-label="Page navigation">';
+        echo '<ul class="pagination justify-content-center">';
+        // 「前へ」を表示
+        if ($paged > 1) {
+            echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($paged - 1).'">&lt;</a></li>';
+        }
+        for ($i=1; $i <= $pages; $i++) {
+            if (1 != $pages &&(!($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems)) {
+                echo ($paged == $i)? '<li class="page-item active"><span class="page-link">'.$i.'</span></li>':
+                    '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($i).'">'.$i.'</a></li>';
+            }
+        }
+        // 「次へ」を表示
+        if ($paged < $pages) {
+            echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($paged + 1).'">&gt;</a></li>';
+        }
+        echo "</ul>";
+        echo "</nav>";
+    }
 }
