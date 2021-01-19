@@ -13,6 +13,13 @@ function add_my_styles()
 }
 add_action('wp_enqueue_scripts', 'add_my_styles');
 
+function load_custom_wp_admin_style()
+{
+    wp_register_style('custom_wp_admin_css', get_stylesheet_directory_uri().'/admin-style.css', false, '1.0.0');
+    wp_enqueue_style('custom_wp_admin_css');
+}
+add_action('admin_enqueue_scripts', 'load_custom_wp_admin_style');
+
 function add_admin_css_js()
 {
     wp_enqueue_style('admin_style', get_template_directory_uri().'/lib/css/admin.css');

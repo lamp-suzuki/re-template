@@ -17,11 +17,9 @@ get_template_part('template/home/slide'); ?>
 <div class="review-top bg-light p-4 text-center">
 <p class="review-top__count"><?php echo get_review_avg(); ?></p>
 <p class="review-top__stars">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="far fa-star"></i>
+<?php
+// 星の表示
+get_review_stars(get_review_avg()); ?>
 </p>
 <p class="review-top__link">
 <a href="#review">口コミ<?php echo number_format(get_review_counts()); ?>件</a>
@@ -67,11 +65,12 @@ get_template_part('template/home/ankerlink'); ?>
 </div>
 <div class="col-lg-9">
 <h3 class="heading__h3">
-<small class="d-block font-weight-bold">店長</small>
-<span class="d-block">山本 太郎</span>
+<?php if (get_option('job-title')): ?>
+<small class="d-block font-weight-bold"><?php echo get_option('job-title'); ?></small>
+<?php endif; ?>
+<span class="d-block"><?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?></span>
 </h3>
-<p class="mb-0">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。
-<br>文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、(200文字以内)</p>
+<p class="mb-0"><?php echo get_option('officer-greeting') ? nl2br(get_option('officer-greeting')) : ''; ?></p>
 </div>
 </div>
 </div>
@@ -231,11 +230,9 @@ wp_reset_postdata();
 <h2 class="heading__h2 mb-0">口コミ</h2>
 <div class="d-inline-flex">
 <div class="text-warning mr-3">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
+<?php
+// 星の表示
+get_review_stars(get_review_avg()); ?>
 </div>
 <div class="font-weight-bold d-inline-flex align-items-center">
 <span><?php echo get_review_avg(); ?></span>
@@ -275,11 +272,9 @@ if (get_post_meta($review->ID, 'review_icon', true) == 0) {
 </div>
 <div class="star">
 <div class="text-warning">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
+<?php
+// 星の表示
+get_review_stars(get_post_meta($review->ID, 'stars', true)); ?>
 </div>
 <div class="num"><?php echo get_post_meta($review->ID, 'stars', true); ?></div>
 </div>

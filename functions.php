@@ -6,6 +6,10 @@ define('DIRECTORY', get_template_directory());
 // 基本設定
 require DIRECTORY.'/lib/functions/common-setting.php';
 
+// テーマ設定
+require DIRECTORY.'/lib/functions/theme-option.php';
+require DIRECTORY.'/lib/functions/theme-setting.php';
+
 // アセットの読み込み
 require DIRECTORY.'/lib/functions/resources.php';
 

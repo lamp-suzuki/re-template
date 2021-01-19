@@ -17,14 +17,18 @@ get_theme_breadcrumb(); ?>
 <div class="pict">
 <img src="<?php echo get_template_directory_uri(); ?>/dist/images/pic_contact.png" alt="" srcset="<?php echo get_template_directory_uri(); ?>/dist/images/pic_contact.png 1x, <?php echo get_template_directory_uri(); ?>/dist/images/pic_contact@2x.png 2x">
 </div>
-<a href="tel:" class="tel btn">
+<?php if (get_option('company-tel')): ?>
+<a href="tel:<?php echo get_option('company-tel'); ?>" class="tel btn">
 <i class="fas fa-phone-volume" style="font-size:2rem"></i>
-<span>0120-00-0000</span>
+<span><?php echo get_option('company-tel'); ?></span>
 </a>
-<a href="#" target="_blank" class="line btn">
+<?php endif; ?>
+<?php if (get_option('company-line')): ?>
+<a href="<?php echo get_option('company-line'); ?>" target="_blank" class="line btn">
 <i class="fab fa-line" style="font-size:2rem"></i>
 <span>LINEで相談する</span>
 </a>
+<?php endif; ?>
 </div>
 </div>
 <!-- .cta__contact -->

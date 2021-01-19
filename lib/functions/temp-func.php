@@ -14,6 +14,28 @@ function get_review_avg()
     return round((float)$wpdb->get_var($query), 1);
 }
 
+// 口コミ星
+function get_review_stars($avg)
+{
+    $stars = floor((Float)$avg);
+    $half = $avg - $stars;
+    $count = 0;
+    for ($i=0; $i < $stars; $i++) {
+        echo '<i class="fas fa-star"></i>';
+        ++$count;
+    }
+    if ($half >= 0.5) {
+        echo '<i class="fas fa-star-half-alt"></i>';
+        ++$count;
+    } else {
+        echo '<i class="far fa-star"></i>';
+        ++$count;
+    }
+    for ($i=0; $i < (5 - $count); $i++) {
+        echo '<i class="far fa-star"></i>';
+    }
+}
+
 
 // パンくず
 function get_theme_breadcrumb()
@@ -71,7 +93,7 @@ function get_theme_breadcrumb()
 // ページネーション
 function pagenation($pages = '', $range = 4)
 {
-    $showitems = ($range * 1)+1;
+    $showitems = ($range * 1) + 1;
     global $paged;
     if (empty($paged)) {
         $paged = 1;

@@ -10,15 +10,23 @@
 <header role="banner" class="header">
 <h1 class="logo">
 <a href="<?php echo home_url(); ?>">
+<?php if (get_the_logo_image_url() != null): ?>
+<span>
+<img class="img-fluid" src="<?php echo get_the_logo_image_url(); ?>" alt="<?php bloginfo('name'); ?>">
+</span>
+<?php else: ?>
 <span><?php bloginfo('name'); ?></span>
+<?php endif; ?>
 </a>
 </h1>
 <!-- .logo -->
-<a href="tel:0120-00-0000" class="tel">
+<?php if (get_option('company-tel')): ?>
+<a href="tel:<?php echo get_option('company-tel'); ?>" class="tel">
 <i class="fas fa-phone-volume text-primary"></i>
-<span>0120-00-0000</span>
+<span><?php echo get_option('company-tel'); ?></span>
 </a>
 <!-- .tel -->
+<?php endif; ?>
 <div class="contact">
 <a href="<?php echo home_url(); ?>/contact/" class="btn btn-primary">
 <i class="fas fa-envelope"></i>
