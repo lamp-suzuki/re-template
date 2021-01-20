@@ -45,11 +45,52 @@ function themename_theme_customizer($wp_customize)
         'section' => 'colors',
         'priority' => 2,
     )));
+
+    // デフォルトアイキャッチ
+    $wp_customize->add_section('default_thumbnail', array(
+        'title' => 'デフォルトアイキャッチ', //セクション名
+        'priority' => 30, //カスタマイザー項目の表示順
+        'description' => 'デフォルトアイキャッチ', //セクションの説明
+    ));
+    $wp_customize->add_setting('default_thumbnail_url');
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'default_thumbnail_url', array(
+        'label' => 'デフォルトアイキャッチ', //設定ラベル
+        'section' => 'default_thumbnail', //セクションID
+        'settings' => 'default_thumbnail_url', //セッティングID
+        'description' => 'アイキャッチが設定されていない場合の画像をアップロードください。',
+    )));
 }
 add_action('customize_register', 'themename_theme_customizer'); //カスタマイザーに登録
 
-//ロゴイメージURLの取得
+// ロゴイメージURLの取得
 function get_the_logo_image_url()
 {
     return esc_url(get_theme_mod('logo_image_url'));
+}
+
+// デフォルトアイキャッチの反映
+function save_default_thumbnail($post_id)
+{
+    $post_thumbnail= get_post_meta($post_id, '_thumbnail_id', true);
+    if (!wp_is_post_revision($post_id)) {
+        if (empty($post_thumbnail) && (get_theme_mod('default_thumbnail_url') != null && get_theme_mod('default_thumbnail_url') != '')) {
+            update_post_meta($post_id, '_thumbnail_id', get_attachment_id(get_theme_mod('default_thumbnail_url')));
+        }
+    }
+}
+add_action('save_post', 'save_default_thumbnail');
+
+/**
+ * 画像のURLからattachemnt_idを取得する
+ *
+ * @param string $url 画像のURL
+ * @return int attachment_id
+ */
+function get_attachment_id($url)
+{
+    global $wpdb;
+    $sql = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s";
+    preg_match('/([^\/]+?)(-e\d+)?(-\d+x\d+)?(\.\w+)?$/', $url, $matches);
+    $post_name = $matches[1];
+    return (int)$wpdb->get_var($wpdb->prepare($sql, $post_name));
 }
