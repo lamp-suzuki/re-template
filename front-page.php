@@ -103,7 +103,7 @@ wp_reset_postdata();
 </div>
 <!-- .post-list -->
 <div class="more-btn text-right">
-<a href="<?php echo home_url().'/blog/' ?>">もっと見る</a>
+<a href="<?php echo home_url(); ?>/blog/">もっと見る</a>
 </div>
 <!-- .more-btn -->
 </div>
@@ -320,7 +320,7 @@ wp_reset_postdata();
 </div>
 <!-- .post-list -->
 <div class="more-btn text-right">
-<a href="<?php echo home_url().'/blog/' ?>">もっと見る</a>
+<a href="<?php echo home_url(); ?>/works/">もっと見る</a>
 </div>
 <!-- .more-btn -->
 </div>

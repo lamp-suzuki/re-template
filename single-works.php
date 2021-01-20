@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <div class="page--title">
 <div class="container">
-<h2>ブログ</h2>
+<h2>作業実績</h2>
 </div>
 </div>
 
