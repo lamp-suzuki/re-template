@@ -26,5 +26,11 @@ get_template_part('template/cta/buttons') ?>
 <small class="copyright">©<?php echo date('Y'); ?> <?php echo get_option('company-name') ? get_option('company-name') : bloginfo('name'); ?></small>
 </footer>
 <?php wp_footer(); ?>
+
+<?php
+// bodyエンドタグ
+if (get_option('tag-body-end')) {
+  echo get_option('tag-body-end');
+} ?>
 </body>
 </html>

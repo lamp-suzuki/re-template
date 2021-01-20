@@ -24,10 +24,9 @@ function add_reeight_menu()
 
 function add_reeight_submenu()
 {
-    // add_submenu_page('reeight-settings', 'タグ管理画面', 'タグ管理', 'manage_options', 'custom_submenu_page_1', 'add_custom_menu_page_1', 1);
+    add_submenu_page('reeight-settings', 'アクセス解析タグ', 'アクセス解析タグ', 'manage_options', 'tracking_setting', 'create_tracking_setting', 1);
     add_submenu_page('reeight-settings', '設定マニュアル', '設定マニュアル', 'manage_options', 'theme_manual', 'create_theme_manual', 2);
 }
-
 
 /**
  * テーマ用の設定値を作成します。
@@ -36,15 +35,28 @@ function register_reeight_settings()
 {
     // 会社情報
     register_setting('reeight-settings', 'company-name'); // 会社名
+    register_setting('reeight-settings', 'company-desc'); // 会社紹介文
     register_setting('reeight-settings', 'company-email'); // 会社メールアドレス
     register_setting('reeight-settings', 'company-tel'); // 会社電話
     register_setting('reeight-settings', 'company-line'); // 会社LINE
+    register_setting('reeight-settings', 'company-address'); // 会社住所
+    register_setting('reeight-settings', 'company-fax'); // 会社FAX
+    register_setting('reeight-settings', 'company-time'); // 営業時間
+    register_setting('reeight-settings', 'company-holiday'); // 定休日
 
     // プロフィール
     register_setting('reeight-settings', 'job-title'); // 役職名
     register_setting('reeight-settings', 'officer-name'); // 代表者名
     register_setting('reeight-settings', 'officer-greeting'); // あいさつ
     register_setting('reeight-settings', 'officer-pict'); // 代表写真
+    register_setting('reeight-settings', 'link-fb'); // Facebook
+    register_setting('reeight-settings', 'link-insta'); // instagram
+    register_setting('reeight-settings', 'link-tw'); // twitter
+
+    // アクセス解析タグ
+    register_setting('reeight-tags', 'tag-head');
+    register_setting('reeight-tags', 'tag-body-start');
+    register_setting('reeight-tags', 'tag-body-end');
 }
 
 /**
@@ -70,7 +82,7 @@ function create_reeight_settings_page()
 <form class="p-3 pb-0 bg-white rounded-bottom border border-1 border-top-0" method="post" action="options.php" enctype="multipart/form-data" encoding="multipart/form-data">
 <?php
 settings_fields('reeight-settings');
-    do_settings_sections('reeight-settings'); ?>
+do_settings_sections('reeight-settings'); ?>
 
 <div class="tab-content" style="max-width: 768px;">
 
@@ -86,9 +98,37 @@ settings_fields('reeight-settings');
 </div>
 
 <div class="mb-4 row">
+<label for="company-desc" class="fw-bold col-sm-3 col-form-label">会社の簡単な紹介文</label>
+<div class="col-sm-9">
+<textarea name="company-desc" class="form-control" id="company-desc" cols="30" rows="10"><?php echo get_option('company-desc'); ?></textarea>
+</div>
+</div>
+
+<div class="mb-4 row">
+<label for="company-address" class="fw-bold col-sm-3 col-form-label">所在地（住所）</label>
+<div class="col-sm-9">
+<textarea name="company-address" class="form-control" id="company-address" cols="30" rows="10"><?php echo get_option('company-address'); ?></textarea>
+</div>
+</div>
+
+<div class="mb-4 row">
+<label for="company-time" class="fw-bold col-sm-3 col-form-label">営業時間</label>
+<div class="col-sm-9">
+<textarea name="company-time" class="form-control" id="company-time" cols="30" rows="10"><?php echo get_option('company-time'); ?></textarea>
+</div>
+</div>
+
+<div class="mb-4 row">
+<label for="company-holiday" class="fw-bold col-sm-3 col-form-label">定休日</label>
+<div class="col-sm-9">
+<textarea name="company-holiday" class="form-control" id="company-holiday" cols="30" rows="10"><?php echo get_option('company-holiday'); ?></textarea>
+</div>
+</div>
+
+<div class="mb-4 row">
 <label for="company-email" class="fw-bold col-sm-3 col-form-label">メールアドレス</label>
 <div class="col-sm-9">
-<input type="email" class="form-control" id="company-email" name="company-email"  placeholder="info@example.com" value="<?php echo get_option('company-email'); ?>">
+<input type="email" class="form-control" id="company-email" name="company-email" placeholder="info@example.com" value="<?php echo get_option('company-email'); ?>">
 </div>
 </div>
 
@@ -96,6 +136,13 @@ settings_fields('reeight-settings');
 <label for="company-tel" class="fw-bold col-sm-3 col-form-label">電話番号</label>
 <div class="col-sm-9">
 <input type="tel" class="form-control" id="company-tel" name="company-tel" placeholder="000-000-0000" value="<?php echo get_option('company-tel'); ?>">
+</div>
+</div>
+
+<div class="mb-4 row">
+<label for="company-fax" class="fw-bold col-sm-3 col-form-label">FAX番号</label>
+<div class="col-sm-9">
+<input type="tel" class="form-control" id="company-fax" name="company-fax" placeholder="000-000-0000" value="<?php echo get_option('company-fax'); ?>">
 </div>
 </div>
 
@@ -169,6 +216,26 @@ settings_fields('reeight-settings');
 <label for="officer-greeting" class="fw-bold col-sm-3 col-form-label">あいさつ</label>
 <div class="col-sm-9">
 <textarea class="form-control" id="officer-greeting" name="officer-greeting" cols="30" rows="10"><?php echo get_option('officer-greeting'); ?></textarea>
+</div>
+</div>
+
+<h3 class="fw-bold h4 mb-4 mt-5">SNSリンク</h3>
+<div class="mb-4 row">
+<label for="link-fb" class="fw-bold col-sm-3 col-form-label">Facebook URL</label>
+<div class="col-sm-9">
+<input type="url" class="form-control" id="link-fb" name="link-fb" placeholder="" value="<?php echo get_option('link-fb'); ?>">
+</div>
+</div>
+<div class="mb-4 row">
+<label for="link-insta" class="fw-bold col-sm-3 col-form-label">Instagram URL</label>
+<div class="col-sm-9">
+<input type="url" class="form-control" id="link-insta" name="link-insta" placeholder="" value="<?php echo get_option('link-insta'); ?>">
+</div>
+</div>
+<div class="mb-4 row">
+<label for="link-tw" class="fw-bold col-sm-3 col-form-label">Twitter URL</label>
+<div class="col-sm-9">
+<input type="url" class="form-control" id="link-tw" name="link-tw" placeholder="" value="<?php echo get_option('link-tw'); ?>">
 </div>
 </div>
 
@@ -296,6 +363,38 @@ function create_theme_manual()
 <?php
 }
 
+// アクセス解析設定
+function create_tracking_setting()
+{
+?>
+<link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+<div class="wrap">
+<h2 class="fw-bold mb-4">アクセス解析タグ設定</h2>
+
+<form class="p-3 pb-0 bg-white rounded border border-1" method="post" action="options.php" enctype="multipart/form-data" encoding="multipart/form-data">
+<?php
+settings_fields('reeight-tags');
+do_settings_sections('reeight-tags'); ?>
+<div class="mb-4">
+<label for="tag-head" class="fw-bold form-label">headタグ内</label>
+<textarea name="tag-head" class="form-control" id="tag-head" cols="30" rows="10"><?php echo get_option('tag-head'); ?></textarea>
+</div>
+<div class="mb-4">
+<label for="tag-body-start" class="fw-bold form-label">bodyタグ最初</label>
+<textarea name="tag-body-start" class="form-control" id="tag-body-start" cols="30" rows="10"><?php echo get_option('tag-body-start'); ?></textarea>
+</div>
+<div class="mb-4">
+<label for="tag-body-end" class="fw-bold form-label">bodyタグ最後</label>
+<textarea name="tag-body-end" class="form-control" id="tag-body-end" cols="30" rows="10"><?php echo get_option('tag-body-end'); ?></textarea>
+</div>
+<?php submit_button(); ?>
+</form>
+
+</div>
+<?php
+}
 
 //画像アップロード用のタグを出力する
 function generate_upload_image_tag($name, $value)

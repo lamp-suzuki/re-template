@@ -18,12 +18,6 @@
 
     &-icon {
       margin-top: 5px;
-      // &::before {
-      //   top: -12px;
-      // }
-      // &::after {
-      //   top: 8px;
-      // }
     }
 
     &__txt {
@@ -44,16 +38,13 @@
   &-menu {
     margin-top: calc(60px + 2rem);
     padding-left: 1.5em;
-    // @include media-breakpoint-down(md) {
-    //   margin-top: calc(60px + 2rem);
-    // }
-
     .page_item {
       margin-bottom: 1em;
       &:last-child {
         margin-bottom: 0;
       }
-      a {
+      & > a,
+      & > span {
         position: relative;
         display: block;
         font-size: 0.875rem;
@@ -61,7 +52,6 @@
         &::before {
           content: "";
           display: inline-block;
-          vertical-align: middle;
           margin-right: 1em;
           width: 0;
           height: 0;
@@ -69,6 +59,27 @@
           border-right: 0.4rem solid transparent;
           border-bottom: 0.7rem solid $primary;
           transform: rotate(90deg);
+        }
+      }
+      & > ul {
+        list-style: none;
+        padding-left: 1em;
+        margin: 0.5rem 0;
+        & > li {
+          list-style: none;
+          & > a {
+            position: relative;
+            display: block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0;
+            color: $body-color;
+            &::before {
+              content: "●";
+              color: $primary;
+              display: inline-block;
+              margin-right: 1em;
+            }
+          }
         }
       }
     }

@@ -4,9 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <?php wp_head(); ?>
+<?php
+// headタグ出力
+if (get_option('tag-head')) {
+  echo get_option('tag-head');
+} ?>
 </head>
+
 <body <?php body_class('drawer drawer--right'); ?>>
 <?php wp_body_open(); ?>
+
+<?php
+// bodyスタートタグ
+if (get_option('tag-body-start')) {
+  echo get_option('tag-body-start');
+} ?>
+
 <header role="banner" class="header">
 <h1 class="logo">
 <a href="<?php echo home_url(); ?>">
@@ -39,17 +52,7 @@
 <span class="drawer-hamburger__txt">MENU</span>
 </button>
 <!-- .drawer-toggle -->
-<nav class="drawer-nav" role="navigation">
-<ul class="drawer-menu">
-<?php wp_list_pages('title_li='); ?>
-</ul>
-<div class="contact">
-<a href="<?php echo home_url(); ?>/contact/" class="btn btn-primary">
-<i class="fas fa-envelope"></i>
-<span>ご相談フォーム</span>
-</a>
-</div>
-</nav>
-<!-- .drawer-nav -->
+<?php get_template_part('template/sp-menu'); ?>
 </header>
+
 <main id="main" role="main">

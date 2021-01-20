@@ -1,5 +1,6 @@
 body {
   background-color: #f1f1f1 !important;
+  font-size: 13px !important;
 }
 
 .wp-admin input[type=file].form-control {

@@ -61,6 +61,26 @@
     }
   }
 
+  &__sns-link {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 1rem;
+    text-align: left;
+    a {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 0;
+      &:nth-child(2) {
+        margin: 0 5px;
+      }
+      img {
+        width: 27.5px;
+      }
+    }
+  }
+
   &__counts {
     z-index: 1;
     position: absolute;

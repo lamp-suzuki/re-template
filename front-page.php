@@ -468,24 +468,53 @@ $id = $faq->ID;
 <?php endif; ?>
 <span class="d-block"><?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?></span>
 </h3>
-<p class="mb-0">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。
-<br>文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、(200文字以内)</p>
+<p class="mb-0"><?php echo nl2br(get_option('company-desc')); ?></p>
 </div>
 </div>
 <table class="table table--normal mt-5">
 <tbody>
+<?php if (get_option('company-name')): ?>
 <tr>
-<th>テキスト</th>
-<td>1,000円</td>
+<th>事業者名</th>
+<td><?php echo get_option('company-name'); ?></td>
 </tr>
+<?php endif; ?>
+<?php if (get_option('company-address')): ?>
 <tr>
-<th>テキスト</th>
-<td>1,000円</td>
+<th>所在地</th>
+<td><?php echo nl2br(get_option('company-address')); ?></td>
 </tr>
+<?php endif; ?>
+<?php if (get_option('company-time')): ?>
 <tr>
-<th>テキスト</th>
-<td>1,000円</td>
+<th>営業時間</th>
+<td><?php echo nl2br(get_option('company-time')); ?></td>
 </tr>
+<?php endif; ?>
+<?php if (get_option('company-holiday')): ?>
+<tr>
+<th>定休日</th>
+<td><?php echo nl2br(get_option('company-holiday')); ?></td>
+</tr>
+<?php endif; ?>
+<?php if (get_option('company-email')): ?>
+<tr>
+<th>メールアドレス</th>
+<td><?php echo get_option('company-email'); ?></td>
+</tr>
+<?php endif; ?>
+<?php if (get_option('company-tel')): ?>
+<tr>
+<th>電話番号</th>
+<td><?php echo get_option('company-tel'); ?></td>
+</tr>
+<?php endif; ?>
+<?php if (get_option('company-fax')): ?>
+<tr>
+<th>FAX番号</th>
+<td><?php echo get_option('company-fax'); ?></td>
+</tr>
+<?php endif; ?>
 </tbody>
 </table>
 </div>
