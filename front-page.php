@@ -58,11 +58,13 @@ get_template_part('template/home/ankerlink'); ?>
 <div class="container">
 <h2 class="heading__h2">ごあいさつ</h2>
 <div class="row">
+<?php if (get_option('officer-pict')): ?>
 <div class="col-lg-3">
 <div class="img__circle">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/greeting_sample.png" alt="">
+<img src="<?php echo get_option('officer-pict'); ?>" alt="<?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?>">
 </div>
 </div>
+<?php endif; ?>
 <div class="col-lg-9">
 <h3 class="heading__h3">
 <?php if (get_option('job-title')): ?>
@@ -452,15 +454,19 @@ $id = $faq->ID;
 <div class="container">
 <h2 class="heading__h2">事業者案内</h2>
 <div class="row">
+<?php if (get_option('officer-pict')): ?>
 <div class="col-lg-3 col-4">
 <div class="img__circle">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/greeting_sample.png" alt="">
+<img src="<?php echo get_option('officer-pict'); ?>" alt="<?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?>">
 </div>
 </div>
+<?php endif; ?>
 <div class="col-lg-9 col-8">
 <h3 class="heading__h3">
-<small class="d-block font-weight-bold">店長</small>
-<span class="d-block">山本 太郎</span>
+<?php if (get_option('job-title')): ?>
+<small class="d-block font-weight-bold"><?php echo get_option('job-title'); ?></small>
+<?php endif; ?>
+<span class="d-block"><?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?></span>
 </h3>
 <p class="mb-0">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。
 <br>文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、(200文字以内)</p>

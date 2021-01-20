@@ -91,11 +91,13 @@ function add_reeight_submenu()
  */
 function register_reeight_settings()
 {
+    // 会社情報
     register_setting('reeight-settings', 'company-name'); // 会社名
     register_setting('reeight-settings', 'company-email'); // 会社メールアドレス
     register_setting('reeight-settings', 'company-tel'); // 会社電話
     register_setting('reeight-settings', 'company-line'); // 会社LINE
 
+    // プロフィール
     register_setting('reeight-settings', 'job-title'); // 役職名
     register_setting('reeight-settings', 'officer-name'); // 代表者名
     register_setting('reeight-settings', 'officer-greeting'); // あいさつ
@@ -105,7 +107,9 @@ function register_reeight_settings()
 /**
  * テーマ設定ページを描画します。
  */
-function create_reeight_settings_page() { ?>
+function create_reeight_settings_page()
+{
+    ?>
 <link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
@@ -123,12 +127,13 @@ function create_reeight_settings_page() { ?>
 <form class="p-3 pb-0 bg-white rounded-bottom border border-1 border-top-0" method="post" action="options.php" enctype="multipart/form-data" encoding="multipart/form-data">
 <?php
 settings_fields('reeight-settings');
-do_settings_sections('reeight-settings');
-?>
+do_settings_sections('reeight-settings'); ?>
 
 <div class="tab-content" style="max-width: 768px;">
 
 <div class="pt-4 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+<h3 class="fw-bold h4 mb-4">会社情報</h3>
 
 <div class="mb-4 row">
 <label for="company-name" class="fw-bold col-sm-3 col-form-label">会社名</label>
@@ -233,7 +238,8 @@ do_settings_sections('reeight-settings');
 </form>
 </div>
 
-<?php }
+<?php
+}
 
 function add_custom_menu_page_1()
 { ?>
