@@ -18,13 +18,13 @@ if ($thumbnail == null) {
 <img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>">
 </div>
 <div>
-<div class="meta">
+<div class="meta text-body">
 <span class="date"><?php echo $time; ?></span>
 <?php if ($category->name != '' && $category->name != null): ?>
 <span class="cat"><?php echo $category->name; ?></span>
 <?php endif; ?>
 </div>
-<h3 class="ttl"><?php echo $title; ?></h3>
-<p class="excerpt"><?php echo $content.'…'; ?></p>
+<h3 class="ttl text-body"><?php echo $title; ?></h3>
+<p class="excerpt text-body"><?php echo $content.'…'; ?></p>
 </div>
 </a>

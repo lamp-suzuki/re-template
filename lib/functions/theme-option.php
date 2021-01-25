@@ -35,20 +35,10 @@ function register_reeight_settings()
 {
     // 会社情報
     register_setting('reeight-settings', 'company-name'); // 会社名
-    register_setting('reeight-settings', 'company-desc'); // 会社紹介文
-    register_setting('reeight-settings', 'company-email'); // 会社メールアドレス
-    register_setting('reeight-settings', 'company-tel'); // 会社電話
-    register_setting('reeight-settings', 'company-line'); // 会社LINE
-    register_setting('reeight-settings', 'company-address'); // 会社住所
-    register_setting('reeight-settings', 'company-fax'); // 会社FAX
-    register_setting('reeight-settings', 'company-time'); // 営業時間
-    register_setting('reeight-settings', 'company-holiday'); // 定休日
-
-    // プロフィール
-    register_setting('reeight-settings', 'job-title'); // 役職名
-    register_setting('reeight-settings', 'officer-name'); // 代表者名
-    register_setting('reeight-settings', 'officer-greeting'); // あいさつ
-    register_setting('reeight-settings', 'officer-pict'); // 代表写真
+    register_setting('reeight-settings', 'company-email'); // メールアドレス
+    register_setting('reeight-settings', 'company-tel'); // 電話
+    register_setting('reeight-settings', 'company-fax'); // FAX
+    register_setting('reeight-settings', 'company-line'); // LINE
     register_setting('reeight-settings', 'link-fb'); // Facebook
     register_setting('reeight-settings', 'link-insta'); // instagram
     register_setting('reeight-settings', 'link-tw'); // twitter
@@ -74,9 +64,9 @@ function create_reeight_settings_page()
 <li class="nav-item mb-0" role="presentation">
 <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">会社情報</a>
 </li>
-<li class="nav-item mb-0" role="presentation">
+<!-- <li class="nav-item mb-0" role="presentation">
 <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">プロフィール</a>
-</li>
+</li> -->
 </ul>
 
 <form class="p-3 pb-0 bg-white rounded-bottom border border-1 border-top-0" method="post" action="options.php" enctype="multipart/form-data" encoding="multipart/form-data">
@@ -96,130 +86,30 @@ do_settings_sections('reeight-settings'); ?>
 <input type="text" class="form-control" id="company-name" name="company-name"  placeholder="株式会社〇〇〇〇" value="<?php echo get_option('company-name'); ?>">
 </div>
 </div>
-
-<div class="mb-4 row">
-<label for="company-desc" class="fw-bold col-sm-3 col-form-label">会社の簡単な紹介文</label>
-<div class="col-sm-9">
-<textarea name="company-desc" class="form-control" id="company-desc" cols="30" rows="10"><?php echo get_option('company-desc'); ?></textarea>
-</div>
-</div>
-
-<div class="mb-4 row">
-<label for="company-address" class="fw-bold col-sm-3 col-form-label">所在地（住所）</label>
-<div class="col-sm-9">
-<textarea name="company-address" class="form-control" id="company-address" cols="30" rows="10"><?php echo get_option('company-address'); ?></textarea>
-</div>
-</div>
-
-<div class="mb-4 row">
-<label for="company-time" class="fw-bold col-sm-3 col-form-label">営業時間</label>
-<div class="col-sm-9">
-<textarea name="company-time" class="form-control" id="company-time" cols="30" rows="10"><?php echo get_option('company-time'); ?></textarea>
-</div>
-</div>
-
-<div class="mb-4 row">
-<label for="company-holiday" class="fw-bold col-sm-3 col-form-label">定休日</label>
-<div class="col-sm-9">
-<textarea name="company-holiday" class="form-control" id="company-holiday" cols="30" rows="10"><?php echo get_option('company-holiday'); ?></textarea>
-</div>
-</div>
-
 <div class="mb-4 row">
 <label for="company-email" class="fw-bold col-sm-3 col-form-label">メールアドレス</label>
 <div class="col-sm-9">
 <input type="email" class="form-control" id="company-email" name="company-email" placeholder="info@example.com" value="<?php echo get_option('company-email'); ?>">
 </div>
 </div>
-
 <div class="mb-4 row">
 <label for="company-tel" class="fw-bold col-sm-3 col-form-label">電話番号</label>
 <div class="col-sm-9">
 <input type="tel" class="form-control" id="company-tel" name="company-tel" placeholder="000-000-0000" value="<?php echo get_option('company-tel'); ?>">
 </div>
 </div>
-
 <div class="mb-4 row">
 <label for="company-fax" class="fw-bold col-sm-3 col-form-label">FAX番号</label>
 <div class="col-sm-9">
 <input type="tel" class="form-control" id="company-fax" name="company-fax" placeholder="000-000-0000" value="<?php echo get_option('company-fax'); ?>">
 </div>
 </div>
-
 <div class="mb-4 row">
-<label for="company-line" class="fw-bold col-sm-3 col-form-label">LINE友達追加URL</label>
+<label for="company-line" class="fw-bold col-sm-3 col-form-label">LINE URL</label>
 <div class="col-sm-9">
 <input type="url" class="form-control" id="company-line" name="company-line" placeholder="https://line.me/ti/p/〇〇〇〇" value="<?php echo get_option('company-line'); ?>">
 </div>
 </div>
-
-<!-- <div class="mb-3 pt-3">
-<h3 class="hndle"><span>セレクトボックス</span></h3>
-<div class="inside">
-<div class="main">
-<p class="setting_description">セレクトボックスを選択してください。</p>
-<h4>セレクトボックス</h4>
-<select name="select" id="select">
-<option value="0" <?php selected(0, get_option('select')); ?> >選択してください</option>
-<option value="1" <?php selected(1, get_option('select')); ?> >セレクトボックス1</option>
-<option value="2" <?php selected(2, get_option('select')); ?> >セレクトボックス2</option>
-<option value="3" <?php selected(3, get_option('select')); ?> >セレクトボックス3</option>
-</select>
-</div>
-</div>
-</div> -->
-
-<!-- <div class="mb-3 pt-3">
-<h3 class="hndle"><span>ラジオボタン</span></h3>
-<div class="inside">
-<div class="main">
-<p class="setting_description">ラジオボタンを選択してください。</p>
-<h4>ラジオボタン</h4>
-<ul>
-<li><label><input name="radio" type="radio" value="0" <?php checked(0, get_option('radio')); ?> />ラジオボタン0</label></li>
-<li><label><input name="radio" type="radio" value="1" <?php checked(1, get_option('radio')); ?> />ラジオボタン1</label></li>
-<li><label><input name="radio" type="radio" value="2" <?php checked(2, get_option('radio')); ?> />ラジオボタン2</label></li>
-<li><label><input name="radio" type="radio" value="3" <?php checked(3, get_option('radio')); ?> />ラジオボタン3</label></li>
-</ul>
-</div>
-</div>
-</div> -->
-
-</div>
-
-<div class="pt-4 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-<h3 class="fw-bold h4 mb-4">代表者設定</h3>
-
-<div class="mb-4 row my-uploader">
-<label for="officer-pict" class="fw-bold col-sm-3 col-form-label">プロフィール写真</label>
-<div class="col-sm-9">
-<?php generate_upload_image_tag('officer-pict', get_option('officer-pict')); ?>
-</div>
-</div>
-
-<div class="mb-4 row">
-<label for="job-title" class="fw-bold col-sm-3 col-form-label">役職名</label>
-<div class="col-sm-9">
-<input type="text" class="form-control" id="job-title" name="job-title" placeholder="代表取締役" value="<?php echo get_option('job-title'); ?>">
-</div>
-</div>
-
-<div class="mb-4 row">
-<label for="officer-name" class="fw-bold col-sm-3 col-form-label">氏名</label>
-<div class="col-sm-9">
-<input type="text" class="form-control" id="officer-name" name="officer-name" placeholder="山田 太郎" value="<?php echo get_option('officer-name'); ?>">
-</div>
-</div>
-
-<div class="mb-4 row">
-<label for="officer-greeting" class="fw-bold col-sm-3 col-form-label">あいさつ</label>
-<div class="col-sm-9">
-<textarea class="form-control" id="officer-greeting" name="officer-greeting" cols="30" rows="10"><?php echo get_option('officer-greeting'); ?></textarea>
-</div>
-</div>
-
-<h3 class="fw-bold h4 mb-4 mt-5">SNSリンク</h3>
 <div class="mb-4 row">
 <label for="link-fb" class="fw-bold col-sm-3 col-form-label">Facebook URL</label>
 <div class="col-sm-9">
@@ -312,6 +202,11 @@ function create_theme_manual()
 <div class="mb-5">
 <h3 class="fw-bold h5">3. パーマリンク設定</h3>
 <p>「設定」の「パーマリンク設定」より「カスタム構造」を選択。内容を「<code>/%category%/%postname%/</code>」に変更し保存。</p>
+</div>
+
+<div class="mb-5">
+<h3 class="fw-bold h5">4. 外観カスタマイズ</h3>
+<p>「外観」の「カスタマイズ」より、<code>ロゴ</code>・<code>デフォルトアイキャッチ</code>・<code>色</code>を編集してください。</p>
 </div>
 
 </div>

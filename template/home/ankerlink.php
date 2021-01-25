@@ -16,7 +16,7 @@ $links = [
 <div class="ankerlink d-flex justify-content-start align-items-start flex-wrap">
 <?php foreach ($links as $ttl => $link) { ?>
 <a href="<?php echo $link; ?>" class="bg-white btn">
-<span class="d-block"><?php echo $ttl; ?></span>
+<span class="d-block text-body"><?php echo $ttl; ?></span>
 <i class="fas fa-caret-down text-primary"></i>
 </a>
 <?php } ?>

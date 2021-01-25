@@ -152,27 +152,27 @@ wp_reset_postdata();
 <tbody>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 </tbody>
 </table>
@@ -183,15 +183,15 @@ wp_reset_postdata();
 <tbody>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 <tr>
 <th>テキスト</th>
-<td>1,000円</td>
+<td class="text-body">1,000円</td>
 </tr>
 </tbody>
 </table>
@@ -476,43 +476,43 @@ $id = $faq->ID;
 <?php if (get_option('company-name')): ?>
 <tr>
 <th>事業者名</th>
-<td><?php echo get_option('company-name'); ?></td>
+<td class="text-body"><?php echo get_option('company-name'); ?></td>
 </tr>
 <?php endif; ?>
 <?php if (get_option('company-address')): ?>
 <tr>
 <th>所在地</th>
-<td><?php echo nl2br(get_option('company-address')); ?></td>
+<td class="text-body"><?php echo nl2br(get_option('company-address')); ?></td>
 </tr>
 <?php endif; ?>
 <?php if (get_option('company-time')): ?>
 <tr>
 <th>営業時間</th>
-<td><?php echo nl2br(get_option('company-time')); ?></td>
+<td class="text-body"><?php echo nl2br(get_option('company-time')); ?></td>
 </tr>
 <?php endif; ?>
 <?php if (get_option('company-holiday')): ?>
 <tr>
 <th>定休日</th>
-<td><?php echo nl2br(get_option('company-holiday')); ?></td>
+<td class="text-body"><?php echo nl2br(get_option('company-holiday')); ?></td>
 </tr>
 <?php endif; ?>
 <?php if (get_option('company-email')): ?>
 <tr>
 <th>メールアドレス</th>
-<td><?php echo get_option('company-email'); ?></td>
+<td class="text-body"><?php echo get_option('company-email'); ?></td>
 </tr>
 <?php endif; ?>
 <?php if (get_option('company-tel')): ?>
 <tr>
 <th>電話番号</th>
-<td><?php echo get_option('company-tel'); ?></td>
+<td class="text-body"><?php echo get_option('company-tel'); ?></td>
 </tr>
 <?php endif; ?>
 <?php if (get_option('company-fax')): ?>
 <tr>
 <th>FAX番号</th>
-<td><?php echo get_option('company-fax'); ?></td>
+<td class="text-body"><?php echo get_option('company-fax'); ?></td>
 </tr>
 <?php endif; ?>
 </tbody>
