@@ -1,50 +1,53 @@
 <?php
 
 // カスタムフィールド設置
-function add_custom_fields()
+function adding_custom_meta_boxes($post_type)
 {
-    // top
-    add_meta_box(
-        'frontpage_setting',
-        'トップページ設定',
-        'insert_frontpage_fields',
-        'page',
-        'normal'
-    );
+    switch ($post_type) {
+        case 'post':
+        case 'page':
+            add_meta_box('frontpage_setting_slide', 'スライドショー', 'insert_slide_images', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_catchcopy', 'キャッチコピー', 'insert_frontpage_catchcopy', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_appeal', 'アピールポイント', 'insert_frontpage_appeal', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_greeting', 'ごあいさつ', 'insert_frontpage_greeting', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_service', 'サービスの特⻑', 'insert_frontpage_service', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_price', '料金表', 'insert_frontpage_price', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_step', '作業の流れ', 'insert_frontpage_step', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_about', '事業者案内', 'insert_frontpage_about', 'page', 'normal', 'high', );
+            break;
+        case 'works':
+            add_meta_box('works_setting', '実績設定', 'insert_works_fields', 'works', 'normal', );
+            break;
+        case 'review':
+            add_meta_box('custom_setting', '口コミ設定', 'insert_custom_fields', 'review', 'normal');
+            break;
 
-    // works
-    add_meta_box(
-        'works_setting',
-        '実績設定',
-        'insert_works_fields',
-        'works',
-        'normal'
-    );
-
-    // review
-    add_meta_box(
-        'custom_setting',
-        '口コミ設定',
-        'insert_custom_fields',
-        'review',
-        'normal'
-    );
+        default:
+            break;
+    }
 }
-add_action('admin_menu', 'add_custom_fields');
+add_action('add_meta_boxes', 'adding_custom_meta_boxes');
+
+// トップページスライドショー
+function insert_slide_images()
+{
+    global $post;
+
+    echo <<<EOM
+    <h4 class="custom--ttl">PC用</h4>
+    <h4 class="custom--ttl">スマホ用</h4>
+    EOM;
+}
 
 // キャッチコピー
-function insert_frontpage_fields()
+function insert_frontpage_catchcopy()
 {
     global $post;
 
     $catch_ttl = get_post_meta($post->ID, 'catch_ttl', true);
     $catch_txt = get_post_meta($post->ID, 'catch_txt', true);
-    $appeal_1 = get_post_meta($post->ID, 'appeal_1', true);
-    $appeal_2 = get_post_meta($post->ID, 'appeal_2', true);
-    $appeal_3 = get_post_meta($post->ID, 'appeal_3', true);
 
     echo <<<EOM
-    <h4 class="custom--ttl">キャッチコピー</h4>
     <div class="custom--guroup">
     <label class="custom--label" for="catch_ttl">タイトル</label>
     <input type="text" name="catch_ttl" value="$catch_ttl" class="custom--input" id="catch_ttl" placeholder="25文字以内" />
@@ -53,8 +56,18 @@ function insert_frontpage_fields()
     <label class="custom--label" for="catch_txt">本文</label>
     <textarea name="catch_txt" id="catch_txt" class="custom--input" placeholder="50文字以内">$catch_txt</textarea>
     </div>
+    EOM;
+}
 
-    <h4 class="custom--ttl">アピールポイント</h4>
+// アピールポイント
+function insert_frontpage_appeal()
+{
+    global $post;
+    $appeal_1 = get_post_meta($post->ID, 'appeal_1', true);
+    $appeal_2 = get_post_meta($post->ID, 'appeal_2', true);
+    $appeal_3 = get_post_meta($post->ID, 'appeal_3', true);
+
+    echo <<<EOM
     <div class="custom--guroup">
     <label class="custom--label" for="appeal_1">1. </label>
     <input type="text" name="appeal_1" value="$appeal_1" class="custom--input" id="appeal_1" placeholder="25文字以内" />
@@ -67,9 +80,63 @@ function insert_frontpage_fields()
     <label class="custom--label" for="appeal_1">3. </label>
     <input type="text" name="appeal_3" value="$appeal_3" class="custom--input" id="appeal_3" placeholder="25文字以内" />
     </div>
-
-    <h4 class="custom--ttl">アピールポイント</h4>
     EOM;
+}
+
+// ごあいさつ
+function insert_frontpage_greeting()
+{
+    global $post;
+    $position = get_post_meta($post->ID, 'position', true);
+    $position_name = get_post_meta($post->ID, 'position_name', true);
+    $greeting = get_post_meta($post->ID, 'greeting', true);
+    echo <<<EOM
+    <div class="custom--guroup">
+    <label class="custom--label" for="appeal_1">役職</label>
+    <input type="text" name="position" value="$position" class="custom--input" id="position" placeholder="25文字以内" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="appeal_1">名前</label>
+    <input type="text" name="position_name" value="$position_name" class="custom--input" id="position_name" placeholder="25文字以内" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="appeal_1">内容</label>
+    <textarea name="greeting" id="greeting" class="custom--input" placeholder="50文字以内">$greeting</textarea>
+    </div>
+    EOM;
+}
+
+// サービスの特⻑
+function insert_frontpage_service()
+{
+    global $post;
+    $service_about =  get_post_meta($post->ID, 'service_about', true);
+    wp_nonce_field('service_about_nonce');
+    wp_editor($service_about, 'service_about_box', ['textarea_name' => 'service_about_input']);
+}
+
+// サービスの料金
+function insert_frontpage_price()
+{
+    global $post;
+    // echo <<<EOM
+    // EOM;
+}
+
+// 作業の流れ
+function insert_frontpage_step()
+{
+    global $post;
+    // echo <<<EOM
+    // EOM;
+}
+
+// 事業者案内
+function insert_frontpage_about()
+{
+    global $post;
+    // echo <<<EOM
+    // EOM;
 }
 
 
