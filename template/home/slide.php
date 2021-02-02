@@ -1,11 +1,27 @@
+<?php
+$slides = [];
+if (wp_is_mobile()) {
+    $prefex = 'pc';
+} else {
+    $prefex = 'sp';
+}
+for ($i=1; $i <= 5; $i++) {
+    if (get_theme_mod($prefex.'_slide_image_url_'.$i)) {
+        $slides[] = esc_url(get_theme_mod($prefex.'_slide_image_url_'.$i));
+    }
+}
+
+if (count($slides) > 0):
+?>
+
 <div class="home-slide__wrap">
 
 <div class="home-slide">
-<?php for ($i=0; $i < 5; $i++) { ?>
+<?php foreach ($slides as $index => $slide): ?>
 <div class="home-slide__inner">
-<img class="w-100" src="<?php echo get_template_directory_uri(); ?>/dist/images/slide_sample.png" alt="">
+<img class="w-100" src="<?php echo $slide; ?>" alt="スライド<?php echo $index; ?>">
 </div>
-<?php } ?>
+<?php endforeach; ?>
 </div>
 
 <div class="home-slide__counts">
@@ -33,3 +49,5 @@
 </div>
 
 </div>
+
+<?php endif; ?>

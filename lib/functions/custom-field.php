@@ -1,4 +1,33 @@
 <?php
+/**
+ * ビジュアルエディタに表(テーブル)の機能を追加します。
+ */
+function mce_external_plugins_table($plugins)
+{
+    $plugins['table'] = '//cdn.tinymce.com/4/plugins/table/plugin.min.js';
+    return $plugins;
+}
+add_filter('mce_external_plugins', 'mce_external_plugins_table');
+
+/**
+ * ビジュアルエディタにテーブル用のボタンを追加します。
+ */
+function mce_buttons_table($buttons)
+{
+    $buttons[] = 'table';
+    return $buttons;
+}
+add_filter('mce_buttons', 'mce_buttons_table');
+
+// 固定ページのみ無効
+function disable_block_editor($use_block_editor, $post_type)
+{
+    if ($post_type === 'page') {
+        return false;
+    }
+    return $use_block_editor;
+}
+add_filter('use_block_editor_for_post_type', 'disable_block_editor', 10, 2);
 
 // カスタムフィールド設置
 function adding_custom_meta_boxes($post_type)
@@ -6,12 +35,13 @@ function adding_custom_meta_boxes($post_type)
     switch ($post_type) {
         case 'post':
         case 'page':
-            add_meta_box('frontpage_setting_slide', 'スライドショー', 'insert_slide_images', 'page', 'normal', 'high', );
             add_meta_box('frontpage_catchcopy', 'キャッチコピー', 'insert_frontpage_catchcopy', 'page', 'normal', 'high', );
             add_meta_box('frontpage_appeal', 'アピールポイント', 'insert_frontpage_appeal', 'page', 'normal', 'high', );
             add_meta_box('frontpage_greeting', 'ごあいさつ', 'insert_frontpage_greeting', 'page', 'normal', 'high', );
             add_meta_box('frontpage_service', 'サービスの特⻑', 'insert_frontpage_service', 'page', 'normal', 'high', );
-            add_meta_box('frontpage_price', '料金表', 'insert_frontpage_price', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_price_1', '料金表1', 'insert_frontpage_price', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_price_2', '料金表2', 'insert_frontpage_price_sub', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_price_3', '料金備考', 'insert_frontpage_price_other', 'page', 'normal', 'high', );
             add_meta_box('frontpage_step', '作業の流れ', 'insert_frontpage_step', 'page', 'normal', 'high', );
             add_meta_box('frontpage_about', '事業者案内', 'insert_frontpage_about', 'page', 'normal', 'high', );
             break;
@@ -27,17 +57,6 @@ function adding_custom_meta_boxes($post_type)
     }
 }
 add_action('add_meta_boxes', 'adding_custom_meta_boxes');
-
-// トップページスライドショー
-function insert_slide_images()
-{
-    global $post;
-
-    echo <<<EOM
-    <h4 class="custom--ttl">PC用</h4>
-    <h4 class="custom--ttl">スマホ用</h4>
-    EOM;
-}
 
 // キャッチコピー
 function insert_frontpage_catchcopy()
@@ -90,6 +109,7 @@ function insert_frontpage_greeting()
     $position = get_post_meta($post->ID, 'position', true);
     $position_name = get_post_meta($post->ID, 'position_name', true);
     $greeting = get_post_meta($post->ID, 'greeting', true);
+
     echo <<<EOM
     <div class="custom--guroup">
     <label class="custom--label" for="appeal_1">役職</label>
@@ -111,32 +131,103 @@ function insert_frontpage_service()
 {
     global $post;
     $service_about =  get_post_meta($post->ID, 'service_about', true);
-    wp_nonce_field('service_about_nonce');
-    wp_editor($service_about, 'service_about_box', ['textarea_name' => 'service_about_input']);
+    wp_editor($service_about, 'service_about_box', [
+        'quicktags' => false,
+        'textarea_name' => 'service_about'
+    ]);
 }
 
 // サービスの料金
 function insert_frontpage_price()
 {
     global $post;
-    // echo <<<EOM
-    // EOM;
+    $price_1 =  get_post_meta($post->ID, 'price_1', true);
+    wp_editor($price_1, 'price_1_box', [
+        'quicktags' => false,
+        'textarea_name' => 'price_1'
+    ]);
+}
+
+// サービスの料金2
+function insert_frontpage_price_sub()
+{
+    global $post;
+    $price_2 =  get_post_meta($post->ID, 'price_2', true);
+    wp_editor($price_2, 'price_2_box', [
+        'quicktags' => false,
+        'textarea_name' => 'price_2'
+    ]);
+}
+
+// サービスの備考
+function insert_frontpage_price_other()
+{
+    global $post;
+    $price_3 =  get_post_meta($post->ID, 'price_3', true);
+    wp_editor($price_3, 'price_3_box', [
+        'quicktags' => false,
+        'textarea_name' => 'price_3'
+    ]);
 }
 
 // 作業の流れ
 function insert_frontpage_step()
 {
     global $post;
-    // echo <<<EOM
-    // EOM;
+    $step_1_ttl = get_post_meta($post->ID, 'step_1_ttl', true);
+    $step_1_txt = get_post_meta($post->ID, 'step_1_txt', true);
+    $step_2_ttl = get_post_meta($post->ID, 'step_2_ttl', true);
+    $step_2_txt = get_post_meta($post->ID, 'step_2_txt', true);
+    $step_3_ttl = get_post_meta($post->ID, 'step_3_ttl', true);
+    $step_3_txt = get_post_meta($post->ID, 'step_3_txt', true);
+    $step_4_ttl = get_post_meta($post->ID, 'step_4_ttl', true);
+    $step_4_txt = get_post_meta($post->ID, 'step_4_txt', true);
+
+    echo <<<EOM
+    <div class="custom--guroup">
+    <label class="custom--label" for="step_1_ttl">STEP1タイトル</label>
+    <input type="text" name="step_1_ttl" value="$step_1_ttl" class="custom--input" id="step_1_ttl" placeholder="" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="step_1_txt">STEP1本文</label>
+    <input type="text" name="step_1_txt" value="$step_1_txt" class="custom--input" id="step_1_txt" placeholder="" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="step_2_ttl">STEP2タイトル</label>
+    <input type="text" name="step_2_ttl" value="$step_2_ttl" class="custom--input" id="step_2_ttl" placeholder="" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="step_2_txt">STEP2本文</label>
+    <input type="text" name="step_2_txt" value="$step_2_txt" class="custom--input" id="step_2_txt" placeholder="" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="step_3_ttl">STEP3タイトル</label>
+    <input type="text" name="step_3_ttl" value="$step_3_ttl" class="custom--input" id="step_3_ttl" placeholder="" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="step_3_txt">STEP3本文</label>
+    <input type="text" name="step_3_txt" value="$step_3_txt" class="custom--input" id="step_3_txt" placeholder="" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="step_4_ttl">STEP4タイトル</label>
+    <input type="text" name="step_4_ttl" value="$step_4_ttl" class="custom--input" id="step_4_ttl" placeholder="" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="step_4_txt">STEP4本文</label>
+    <input type="text" name="step_4_txt" value="$step_4_txt" class="custom--input" id="step_4_txt" placeholder="" />
+    </div>
+    EOM;
 }
 
 // 事業者案内
 function insert_frontpage_about()
 {
     global $post;
-    // echo <<<EOM
-    // EOM;
+    $company_about =  get_post_meta($post->ID, 'company_about', true);
+    wp_editor($company_about, 'company_about_box', [
+        'quicktags' => false,
+        'textarea_name' => 'company_about'
+    ]);
 }
 
 
@@ -258,6 +349,63 @@ function save_custom_fields($post_id)
         }
         if (isset($_POST['catch_txt'])) {
             update_post_meta($post_id, 'catch_txt', $_POST['catch_txt']);
+        }
+        if (isset($_POST['appeal_1'])) {
+            update_post_meta($post_id, 'appeal_1', $_POST['appeal_1']);
+        }
+        if (isset($_POST['appeal_2'])) {
+            update_post_meta($post_id, 'appeal_2', $_POST['appeal_2']);
+        }
+        if (isset($_POST['appeal_3'])) {
+            update_post_meta($post_id, 'appeal_3', $_POST['appeal_3']);
+        }
+        if (isset($_POST['position'])) {
+            update_post_meta($post_id, 'position', $_POST['position']);
+        }
+        if (isset($_POST['position_name'])) {
+            update_post_meta($post_id, 'position_name', $_POST['position_name']);
+        }
+        if (isset($_POST['greeting'])) {
+            update_post_meta($post_id, 'greeting', $_POST['greeting']);
+        }
+        if (isset($_POST['service_about'])) {
+            update_post_meta($post_id, 'service_about', $_POST['service_about']);
+        }
+        if (isset($_POST['price_1'])) {
+            update_post_meta($post_id, 'price_1', $_POST['price_1']);
+        }
+        if (isset($_POST['price_2'])) {
+            update_post_meta($post_id, 'price_2', $_POST['price_2']);
+        }
+        if (isset($_POST['price_3'])) {
+            update_post_meta($post_id, 'price_3', $_POST['price_3']);
+        }
+        if (isset($_POST['step_1_ttl'])) {
+            update_post_meta($post_id, 'step_1_ttl', $_POST['step_1_ttl']);
+        }
+        if (isset($_POST['step_1_txt'])) {
+            update_post_meta($post_id, 'step_1_txt', $_POST['step_1_txt']);
+        }
+        if (isset($_POST['step_2_ttl'])) {
+            update_post_meta($post_id, 'step_2_ttl', $_POST['step_2_ttl']);
+        }
+        if (isset($_POST['step_2_txt'])) {
+            update_post_meta($post_id, 'step_2_txt', $_POST['step_2_txt']);
+        }
+        if (isset($_POST['step_3_ttl'])) {
+            update_post_meta($post_id, 'step_3_ttl', $_POST['step_3_ttl']);
+        }
+        if (isset($_POST['step_3_txt'])) {
+            update_post_meta($post_id, 'step_3_txt', $_POST['step_3_txt']);
+        }
+        if (isset($_POST['step_4_ttl'])) {
+            update_post_meta($post_id, 'step_4_ttl', $_POST['step_4_ttl']);
+        }
+        if (isset($_POST['step_4_txt'])) {
+            update_post_meta($post_id, 'step_4_txt', $_POST['step_4_txt']);
+        }
+        if (isset($_POST['company_about'])) {
+            update_post_meta($post_id, 'company_about', $_POST['company_about']);
         }
     }
 

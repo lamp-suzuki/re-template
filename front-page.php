@@ -1,17 +1,42 @@
 <?php
 // header
-get_header(); ?>
+get_header(); the_post(); ?>
 
 <?php
 // slides
 get_template_part('template/home/slide'); ?>
 
+<?php
+$page_id = get_the_ID();
+$catch_ttl = get_post_meta($page_id, 'catch_ttl', true);
+$catch_txt = get_post_meta($page_id, 'catch_txt', true);
+$appeal_1 = get_post_meta($page_id, 'appeal_1', true);
+$appeal_2 = get_post_meta($page_id, 'appeal_2', true);
+$appeal_3 = get_post_meta($page_id, 'appeal_3', true);
+$position = get_post_meta($page_id, 'position', true);
+$position_name = get_post_meta($page_id, 'position_name', true);
+$greeting = get_post_meta($page_id, 'greeting', true);
+$service_about =  get_post_meta($page_id, 'service_about', true);
+$price_1 =  get_post_meta($page_id, 'price_1', true);
+$price_2 =  get_post_meta($page_id, 'price_2', true);
+$price_3 =  get_post_meta($page_id, 'price_3', true);
+$step_1_ttl = get_post_meta($page_id, 'step_1_ttl', true);
+$step_1_txt = get_post_meta($page_id, 'step_1_txt', true);
+$step_2_ttl = get_post_meta($page_id, 'step_2_ttl', true);
+$step_2_txt = get_post_meta($page_id, 'step_2_txt', true);
+$step_3_ttl = get_post_meta($page_id, 'step_3_ttl', true);
+$step_3_txt = get_post_meta($page_id, 'step_3_txt', true);
+$step_4_ttl = get_post_meta($page_id, 'step_4_ttl', true);
+$step_4_txt = get_post_meta($page_id, 'step_4_txt', true);
+$company_about =  get_post_meta($page_id, 'company_about', true);
+?>
+
 <section class="sec pt-0">
 <div class="container">
 <div class="row">
 <div class="col-lg-8">
-<h2 class="heading__h2">キャッチコピー<br>キャッチコピーキャッチコピー(25文字以内)</h2>
-<p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。<br>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、(50文字以内)</p>
+<h2 class="heading__h2"><?php echo $catch_ttl; ?></h2>
+<p><?php echo nl2br($catch_txt); ?></p>
 </div>
 <div class="col-lg-4">
 <div class="review-top bg-light p-4 text-center">
@@ -31,9 +56,9 @@ get_review_stars(get_review_avg()); ?>
 <div class="appeal-point p-3 border my-lg-5 my-4">
 <h2 class="heading__h2 text-center">アピールポイント</h2>
 <ul class="m-0 list__check">
-<li>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(25文字以内)</li>
-<li>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(25文字以内)</li>
-<li>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(25文字以内)</li>
+<?php if ($appeal_1): ?><li><?php echo $appeal_1; ?></li><?php endif; ?>
+<?php if ($appeal_2): ?><li><?php echo $appeal_2; ?></li><?php endif; ?>
+<?php if ($appeal_3): ?><li><?php echo $appeal_3; ?></li><?php endif; ?>
 </ul>
 </div>
 <!-- .appeal-point -->
@@ -58,21 +83,21 @@ get_template_part('template/home/ankerlink'); ?>
 <div class="container">
 <h2 class="heading__h2">ごあいさつ</h2>
 <div class="row">
-<?php if (get_option('officer-pict')): ?>
+<?php if (get_theme_mod('profile_pict_url')): ?>
 <div class="col-lg-3">
 <div class="img__circle">
-<img src="<?php echo get_option('officer-pict'); ?>" alt="<?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?>">
+<img src="<?php echo get_theme_mod('profile_pict_url'); ?>" alt="<?php echo $position_name ? $position_name : ''; ?>">
 </div>
 </div>
 <?php endif; ?>
 <div class="col-lg-9">
 <h3 class="heading__h3">
-<?php if (get_option('job-title')): ?>
-<small class="d-block font-weight-bold"><?php echo get_option('job-title'); ?></small>
+<?php if ($position): ?>
+<small class="d-block font-weight-bold"><?php echo $position; ?></small>
 <?php endif; ?>
-<span class="d-block"><?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?></span>
+<span class="d-block"><?php echo $position_name ? $position_name : ''; ?></span>
 </h3>
-<p class="mb-0"><?php echo get_option('officer-greeting') ? nl2br(get_option('officer-greeting')) : ''; ?></p>
+<p class="mb-0"><?php echo $greeting ? nl2br($greeting) : ''; ?></p>
 </div>
 </div>
 </div>
@@ -114,28 +139,7 @@ wp_reset_postdata();
 <div class="container">
 <h2 class="heading__h2">サービスの特⻑</h2>
 <div class="post-inner">
-<div class="row mb-3">
-<div class="col">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/slide_sample.png" alt="">
-</div>
-<div class="col">
-<img src="<?php echo get_template_directory_uri(); ?>/dist/images/slide_sample.png" alt="">
-</div>
-</div>
-<p>この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。
-<br>この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。(500文字以内)</p>
-<hr>
-<h2>見出し2デザイン</h2>
-<p>この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。
-<br>この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。</p>
-<h3>見出し3デザイン</h3>
-<p>この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。
-<br>この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。</p>
-<div class="post-box bg-light p-4">
-<h4 class="mt-0">見出し4デザイン</h4>
-<p class="mb-0">この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。
-<br>この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。</p>
-</div>
+<?php echo $service_about; ?>
 </div>
 <!-- .post-inner -->
 </div>
@@ -148,55 +152,14 @@ wp_reset_postdata();
 <div class="row">
 <div class="col-lg-6 mb-lg-0 mb-4">
 <h3>基本料金</h3>
-<table class="table">
-<tbody>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-</tbody>
-</table>
+<?php echo $price_1; ?>
 </div>
 <div class="col-lg-6">
 <h3>オプション料金</h3>
-<table class="table">
-<tbody>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-<tr>
-<th>テキスト</th>
-<td class="text-body">1,000円</td>
-</tr>
-</tbody>
+<?php echo $price_2; ?>
 </table>
 <h3 class="mt-4">備考</h3>
-<p class="mb-0 bg-white p-4 border">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。(200文字以内)</p>
+<p class="mb-0 bg-white p-4 border"><?php echo nl2br(strip_tags($price_3)); ?></p>
 </div>
 </div>
 <!-- .row -->
@@ -337,8 +300,8 @@ wp_reset_postdata();
 <span>01</span>
 </div>
 <div class="text">
-<h3>お電話もしくはフォームにてお問い合わせ</h3>
-<p>お電話もしくはご相談フォームからお気軽にお問い合わせください。</p>
+<h3><?php echo $step_1_ttl; ?></h3>
+<p><?php echo $step_1_txt; ?></p>
 </div>
 </div>
 <!-- .step-home__inner -->
@@ -348,8 +311,8 @@ wp_reset_postdata();
 <span>02</span>
 </div>
 <div class="text">
-<h3>お電話もしくはフォームにてお問い合わせ</h3>
-<p>お電話もしくはご相談フォームからお気軽にお問い合わせください。</p>
+<h3><?php echo $step_2_ttl; ?></h3>
+<p><?php echo $step_2_txt; ?></p>
 </div>
 </div>
 <!-- .step-home__inner -->
@@ -359,8 +322,8 @@ wp_reset_postdata();
 <span>03</span>
 </div>
 <div class="text">
-<h3>お電話もしくはフォームにてお問い合わせ</h3>
-<p>お電話もしくはご相談フォームからお気軽にお問い合わせください。</p>
+<h3><?php echo $step_3_ttl; ?></h3>
+<p><?php echo $step_3_txt; ?></p>
 </div>
 </div>
 <!-- .step-home__inner -->
@@ -370,8 +333,8 @@ wp_reset_postdata();
 <span>04</span>
 </div>
 <div class="text">
-<h3>お電話もしくはフォームにてお問い合わせ</h3>
-<p>お電話もしくはご相談フォームからお気軽にお問い合わせください。</p>
+<h3><?php echo $step_4_ttl; ?></h3>
+<p><?php echo $step_4_txt; ?></p>
 </div>
 </div>
 <!-- .step-home__inner -->
@@ -453,70 +416,7 @@ $id = $faq->ID;
 <section id="company" class="sec">
 <div class="container">
 <h2 class="heading__h2">事業者案内</h2>
-<div class="row">
-<?php if (get_option('officer-pict')): ?>
-<div class="col-lg-3 col-4">
-<div class="img__circle">
-<img src="<?php echo get_option('officer-pict'); ?>" alt="<?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?>">
-</div>
-</div>
-<?php endif; ?>
-<div class="col-lg-9 col-8">
-<h3 class="heading__h3">
-<?php if (get_option('job-title')): ?>
-<small class="d-block font-weight-bold"><?php echo get_option('job-title'); ?></small>
-<?php endif; ?>
-<span class="d-block"><?php echo get_option('officer-name') ? get_option('officer-name') : ''; ?></span>
-</h3>
-<p class="mb-0"><?php echo nl2br(get_option('company-desc')); ?></p>
-</div>
-</div>
-<table class="table table--normal mt-5">
-<tbody>
-<?php if (get_option('company-name')): ?>
-<tr>
-<th>事業者名</th>
-<td class="text-body"><?php echo get_option('company-name'); ?></td>
-</tr>
-<?php endif; ?>
-<?php if (get_option('company-address')): ?>
-<tr>
-<th>所在地</th>
-<td class="text-body"><?php echo nl2br(get_option('company-address')); ?></td>
-</tr>
-<?php endif; ?>
-<?php if (get_option('company-time')): ?>
-<tr>
-<th>営業時間</th>
-<td class="text-body"><?php echo nl2br(get_option('company-time')); ?></td>
-</tr>
-<?php endif; ?>
-<?php if (get_option('company-holiday')): ?>
-<tr>
-<th>定休日</th>
-<td class="text-body"><?php echo nl2br(get_option('company-holiday')); ?></td>
-</tr>
-<?php endif; ?>
-<?php if (get_option('company-email')): ?>
-<tr>
-<th>メールアドレス</th>
-<td class="text-body"><?php echo get_option('company-email'); ?></td>
-</tr>
-<?php endif; ?>
-<?php if (get_option('company-tel')): ?>
-<tr>
-<th>電話番号</th>
-<td class="text-body"><?php echo get_option('company-tel'); ?></td>
-</tr>
-<?php endif; ?>
-<?php if (get_option('company-fax')): ?>
-<tr>
-<th>FAX番号</th>
-<td class="text-body"><?php echo get_option('company-fax'); ?></td>
-</tr>
-<?php endif; ?>
-</tbody>
-</table>
+<?php echo $company_about; ?>
 </div>
 </section>
 <!-- #company -->
