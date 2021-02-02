@@ -1,13 +1,15 @@
 <?php
 $slides = [];
+
 if (wp_is_mobile()) {
-    $prefex = 'pc';
-} else {
     $prefex = 'sp';
+} else {
+    $prefex = 'pc';
 }
+
 for ($i=1; $i <= 5; $i++) {
-    if (get_theme_mod($prefex.'_slide_image_url_'.$i)) {
-        $slides[] = esc_url(get_theme_mod($prefex.'_slide_image_url_'.$i));
+    if (get_theme_mod("{$prefex}_slide_image_url_{$i}")) {
+        $slides[] = get_theme_mod("{$prefex}_slide_image_url_{$i}");
     }
 }
 
