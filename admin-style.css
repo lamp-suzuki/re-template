@@ -89,7 +89,8 @@ textarea.form-control {
   margin-right: 1rem;
 }
 
-.custom--guroup .custom--input {
+.custom--guroup .custom--input,
+.custom--guroup .custom--textarea {
   display: block;
   width: 75%;
 }

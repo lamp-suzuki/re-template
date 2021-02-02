@@ -86,7 +86,7 @@ function add_posts_columns($columns, $post_type)
             'date' => '日時',
             'author' => '作成者',
         ];
-    } elseif ($post_type === 'review') {
+    } elseif ($post_type === 'review' || $post_type === 'area') {
         $columns = [
             'cb' => '<input type="checkbox" />',
             'title' => 'タイトル',

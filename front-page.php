@@ -171,19 +171,33 @@ wp_reset_postdata();
 <div class="container">
 <h2 class="heading__h2">対応エリア</h2>
 <div class="d-flex justify-content-start align-items-center flex-wrap mb-3">
-<div class="badge-area mb-lg-3 mb-2 mr-lg-3 mr-2 active" data-id="1">北海道</div>
-<div class="badge-area mb-lg-3 mb-2 mr-lg-3 mr-2" data-id="2">北海道</div>
-<div class="badge-area mb-lg-3 mb-2 mr-lg-3 mr-2" data-id="3">北海道</div>
-<div class="badge-area mb-lg-3 mb-2 mr-lg-3 mr-2" data-id="4">北海道</div>
-<div class="badge-area mb-lg-3 mb-2 mr-lg-3 mr-2" data-id="5">北海道</div>
+
+<?php
+$areas = get_posts([
+    'posts_per_page' => -1,
+    'post_type' => 'area',
+    'orderby' => 'ID',
+    'order' => 'ASC',
+]);
+$area_array = [];
+foreach ($areas as $area) {
+    setup_postdata($area);
+    $area_array[] = [
+        'ttl' => get_post_meta($area->ID, 'area_name', true),
+        'txt' => get_post_meta($area->ID, 'area_text', true),
+    ];
+}
+?>
+
+<?php foreach ($area_array as $key => $val): ?>
+<div class="badge-area mb-lg-3 mb-2 mr-lg-3 mr-2 <?php echo $key == 0 ? "active" : ''; ?>" data-id="<?php echo ($key+1); ?>"><?php echo $val['ttl']; ?></div>
+<?php endforeach; ?>
 </div>
 <!-- .badge-area -->
 <p class="m-0">
-<span class="active area-text" data-areaid="1" style="display: none;">札幌市/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/</span>
-<span class="area-text" data-areaid="2" style="display: none;">2/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/</span>
-<span class="area-text" data-areaid="3" style="display: none;">3/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/</span>
-<span class="area-text" data-areaid="4" style="display: none;">4/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/</span>
-<span class="area-text" data-areaid="5" style="display: none;">5/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/テキスト/</span>
+<?php foreach ($area_array as $key => $val): ?>
+<span class="<?php echo $key == 0 ? "active" : ''; ?> area-text" data-areaid="<?php echo ($key+1); ?>" style="display: none;"><?php echo $val['txt']; ?></span>
+<?php endforeach; ?>
 </p>
 </div>
 </section>

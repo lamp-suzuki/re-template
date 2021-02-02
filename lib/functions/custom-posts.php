@@ -122,5 +122,30 @@ function custom_post_type()
           ]
         ]
     );
+
+    // 対応エリアの追加
+    register_post_type(
+        'area', // 投稿タイプのスラッグの指定
+        [
+          'labels' => [
+              'name' => __('対応エリア'), // メニューに表示されるラベル
+              'all_items' => '一覧を表示',
+              'singular_name' => __('対応エリア'), // 単体系のラベル
+              'add_new' => _x('新規追加', '対応エリア'), // 新規追加のラベル、国際化対応のために投稿タイプを指定
+              'add_new_item' => __('新規追加') // 新規項目追加のラベル
+          ],
+          'show_in_rest' => true,
+          'public' => true, // 投稿タイプをパブリックにする
+          'has_archive' => false, // アーカイブを無効にする
+          'hierarchical' => false, // ページ階層の指定
+          'menu_position' => 5, // 管理画面上の配置指定
+          'supports' => [
+              'title',
+              'author',
+              'trackbacks',
+              'revisions',
+          ]
+        ]
+    );
 }
 add_action('init', 'custom_post_type');

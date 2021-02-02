@@ -51,6 +51,9 @@ function adding_custom_meta_boxes($post_type)
         case 'review':
             add_meta_box('custom_setting', '口コミ設定', 'insert_custom_fields', 'review', 'normal');
             break;
+        case 'area':
+            add_meta_box('area_setting', '対応エリア設定', 'insert_area_fields', 'area', 'normal');
+            break;
 
         default:
             break;
@@ -230,7 +233,6 @@ function insert_frontpage_about()
     ]);
 }
 
-
 // カスタムフィールドの入力エリア（works）
 function insert_works_fields()
 {
@@ -274,6 +276,31 @@ function insert_works_fields()
     );
     echo '<div class="custom--guroup">';
     echo '<label class="custom--label" for="works_price">作業料金</label><input type="text" name="works_price" value="'.$works_price.'" class="custom--input" id="works_price" />';
+    echo '</div>';
+}
+
+// カスタムフィールドの入力エリア（area）
+function insert_area_fields()
+{
+    global $post;
+    // エリア名
+    $area_name = get_post_meta(
+        $post->ID,
+        'area_name',
+        true
+    );
+    echo '<div class="custom--guroup">';
+    echo '<label class="custom--label" for="area_name">エリア名</label><input type="text" name="area_name" value="'.$area_name.'" class="custom--input" id="area_name" />';
+    echo '</div>';
+    // エリア詳細
+    $area_text = get_post_meta(
+        $post->ID,
+        'area_text',
+        true
+    );
+    echo '<div class="custom--guroup">';
+    echo '<label class="custom--label" for="area_text">エリア詳細</label>';
+    echo '<textarea class="custom--textarea" name="area_text" id="area_text" rows="8">'.$area_text.'</textarea>';
     echo '</div>';
 }
 
@@ -441,6 +468,16 @@ function save_custom_fields($post_id)
         }
         if (isset($_POST['review_content'])) {
             update_post_meta($post_id, 'review_content', $_POST['review_content']);
+        }
+    }
+
+    // エリア
+    if ($post_type === 'area') {
+        if (isset($_POST['area_name'])) {
+            update_post_meta($post_id, 'area_name', $_POST['area_name']);
+        }
+        if (isset($_POST['area_text'])) {
+            update_post_meta($post_id, 'area_text', $_POST['area_text']);
         }
     }
 }
