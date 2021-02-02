@@ -38,15 +38,21 @@ if (count($slides) > 0):
 
 <div class="home-slide__sns-link">
 <div class="container">
+<?php if (get_option('link-fb')): ?>
 <a href="<?php echo get_option('link-fb'); ?>" target="_blank" rel="nofollow">
 <img src="<?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_facebook.png" alt="フェイスブック" srcset="<?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_facebook.png 1x, <?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_facebook@2x.png 2x">
 </a>
+<?php endif; ?>
+<?php if (get_option('link-insta')): ?>
 <a href="<?php echo get_option('link-insta'); ?>" target="_blank" rel="nofollow">
 <img src="<?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_instagram.png" alt="インスタグラム" srcset="<?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_instagram.png 1x, <?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_instagram@2x.png 2x">
 </a>
+<?php endif; ?>
+<?php if (get_option('link-tw')): ?>
 <a href="<?php echo get_option('link-tw'); ?>" target="_blank" rel="nofollow">
 <img src="<?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_twitter.png" alt="ツイッター" srcset="<?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_twitter.png 1x, <?php echo get_template_directory_uri(); ?>/dist/images/icon_sns_twitter@2x.png 2x">
 </a>
+<?php endif; ?>
 </div>
 </div>
 

@@ -53,7 +53,7 @@ get_review_stars(get_review_avg()); ?>
 </div>
 </div>
 <!-- .row -->
-<div class="appeal-point p-3 border my-lg-5 my-4">
+<div class="appeal-point my-lg-5 my-4">
 <h2 class="heading__h2 text-center">アピールポイント</h2>
 <ul class="m-0 list__check">
 <?php if ($appeal_1): ?><li><?php echo $appeal_1; ?></li><?php endif; ?>

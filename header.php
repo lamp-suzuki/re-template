@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <?php wp_head(); ?>
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <?php if (get_theme_mod('body_color')): ?>
 <style>
 body{color: <?php echo get_theme_mod('body_color'); ?>;}
@@ -55,9 +56,9 @@ if (get_option('tag-body-start')) {
 <!-- .tel -->
 <?php endif; ?>
 <div class="contact">
-<a href="<?php echo home_url(); ?>/contact/" class="text-decoration-none">
-<i class="fas fa-envelope text-primary"></i>
-<span class="text-body font-weight-bold">ご相談フォーム</span>
+<a href="<?php echo home_url(); ?>/contact/" class="btn btn-primary">
+<i class="fas fa-envelope"></i>
+<span>ご相談フォーム</span>
 </a>
 </div>
 <!-- .contact -->
