@@ -34,7 +34,9 @@ function adding_custom_meta_boxes($post_type)
 {
     switch ($post_type) {
         case 'post':
+            add_meta_box('post_description', 'ディスクリプション', 'insert_post_description', 'post', 'normal', 'high', );
         case 'page':
+            add_meta_box('post_description', 'ディスクリプション', 'insert_post_description', 'post', 'normal', 'high', );
             add_meta_box('frontpage_catchcopy', 'キャッチコピー', 'insert_frontpage_catchcopy', 'page', 'normal', 'high', );
             add_meta_box('frontpage_appeal', 'アピールポイント', 'insert_frontpage_appeal', 'page', 'normal', 'high', );
             add_meta_box('frontpage_greeting', 'ごあいさつ', 'insert_frontpage_greeting', 'page', 'normal', 'high', );
@@ -60,6 +62,20 @@ function adding_custom_meta_boxes($post_type)
     }
 }
 add_action('add_meta_boxes', 'adding_custom_meta_boxes');
+
+// ディスクリプション
+function insert_post_description()
+{
+    global $post;
+
+    $post_description = get_post_meta($post->ID, 'post_description', true);
+
+    echo <<<EOM
+    <div class="custom--guroup">
+    <textarea name="post_description" id="post_description" placeholder="150文字以内" style="widht:100%">$post_description</textarea>
+    </div>
+    EOM;
+}
 
 // キャッチコピー
 function insert_frontpage_catchcopy()
@@ -369,8 +385,17 @@ function save_custom_fields($post_id)
 {
     $post_type = get_post_type($post_id);
 
+    if ($post_type === 'post') {
+        if (isset($_POST['post_description'])) {
+            update_post_meta($post_id, 'post_description', $_POST['post_description']);
+        }
+    }
+
     // トップページ
     if ($post_type === 'page') {
+        if (isset($_POST['post_description'])) {
+            update_post_meta($post_id, 'post_description', $_POST['post_description']);
+        }
         if (isset($_POST['catch_ttl'])) {
             update_post_meta($post_id, 'catch_ttl', $_POST['catch_ttl']);
         }
