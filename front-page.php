@@ -31,8 +31,6 @@ $step_4_txt = get_post_meta($page_id, 'step_4_txt', true);
 $company_about =  get_post_meta($page_id, 'company_about', true);
 ?>
 
-<div class="home-warp">
-
 <section class="sec pt-0">
 <div class="container">
 <div class="row">
@@ -74,7 +72,7 @@ get_template_part('template/cta/buttons'); ?>
 
 <section class="sec">
 <div class="container">
-<h2 class="heading__h2">基本情報<span class="text-body">(クリックで該当情報を確認できます)</span></h2>
+<h2 class="heading__h2">基本情報<span class="text-body small"><small>（クリックで該当情報を確認できます）</small></span></h2>
 <?php
 // ankerlink
 get_template_part('template/home/ankerlink'); ?>
@@ -215,7 +213,7 @@ foreach ($areas as $area) {
 // 星の表示
 get_review_stars(get_review_avg()); ?>
 </div>
-<div class="font-weight-bold d-inline-flex align-items-center">
+<div class="font-weight-bold d-inline-flex align-items-center" style="font-size: 120%;">
 <span><?php echo get_review_avg(); ?></span>
 <span class="mx-2">|</span>
 <span><?php echo number_format(get_review_counts()); ?>件</span>
@@ -417,8 +415,18 @@ setup_postdata($faq);
 $id = $faq->ID;
 ?>
 <div class="faq__box">
-<h3><?php echo get_the_title($id); ?></h3>
-<div><?php echo strip_tags(strip_shortcodes(get_the_content())); ?></div>
+<h3>
+<div>
+<span class="text-primary font-weight-bold mr-3">Q</span>
+<span><?php echo get_the_title($id); ?></span>
+</div>
+</h3>
+<div>
+<div>
+<span class="font-weight-bold mr-3">A</span>
+<span><?php echo strip_tags(strip_shortcodes(get_the_content())); ?></span>
+</div>
+</div>
 </div>
 <!-- .faq__box -->
 <?php endforeach; ?>
@@ -433,11 +441,23 @@ $id = $faq->ID;
 <div class="container">
 <h2 class="heading__h2">事業者案内</h2>
 <?php echo $company_about; ?>
+
+<div class="row mt-4">
+<div class="col-md">
+<div class="embed-responsive embed-responsive-4by3">
+<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.827853398534!2d139.76493611520053!3d35.68124053757898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1612346091127!5m2!1sja!2sjp"></iframe>
+</div>
+</div>
+<div class="col-md mt-md-0 mt-4">
+<div class="embed-responsive embed-responsive-4by3">
+<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!4v1612346316119!6m8!1m7!1sFprQtWX1aNhPgxW1vzj6CQ!2m2!1d35.68114190583712!2d139.7671619642916!3f205.82950039533677!4f0!5f0.7820865974627469"></iframe>
+</div>
+</div>
+</div>
 </div>
 </section>
 <!-- #company -->
 
-</div>
 <?php
 // footer
 get_footer();

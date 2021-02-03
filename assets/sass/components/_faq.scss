@@ -13,11 +13,19 @@
       margin-bottom: 0.875rem;
     }
     h3 {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
       position: relative;
       font-size: 1.125rem;
       font-weight: bold;
       margin: 0;
       padding-right: calc(1.125rem * 2 + 1rem);
+      div {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+      }
       @include media-breakpoint-down(md) {
         font-size: 0.875rem;
         padding-right: calc(0.875rem * 2 + 0.875rem);
@@ -45,6 +53,11 @@
         line-height: 1.9;
         font-size: 0.75rem;
         margin-top: 1.125rem;
+        div {
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+        }
         @include media-breakpoint-down(md) {
           margin-top: 0.875rem;
         }

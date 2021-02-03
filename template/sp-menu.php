@@ -25,10 +25,10 @@ $links = [
 <li class="page_item"><a href="<?php echo home_url(); ?>/blog/">ブログ</a></li>
 <li class="page_item"><a href="<?php echo home_url(); ?>/works/">作業実績</a></li>
 </ul>
-<div class="contact">
-<a href="<?php echo home_url(); ?>/contact/" class="btn btn-primary">
-<i class="fas fa-envelope"></i>
-<span>ご相談フォーム</span>
+<div class="contact border-top pt-3">
+<a class="font-weight-bold" href="<?php echo home_url(); ?>/contact/">
+<i class="fas fa-envelope text-primary"></i>
+<span class="text-body ml-1">ご相談フォーム</span>
 </a>
 </div>
 </nav>

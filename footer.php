@@ -5,6 +5,18 @@
 get_template_part('template/cta/buttons') ?>
 </div>
 </div>
+
+<div class="pb-5">
+<div class="container">
+<p class="small" style="opacity: 0.7;">ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。</p>
+<p class="small" style="opacity: 0.7;">ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。</p>
+<p class="small" style="opacity: 0.7;">ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。</p>
+<p class="small" style="opacity: 0.7;">ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。</p>
+<p class="small" style="opacity: 0.7;">ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。</p>
+<p class="small" style="opacity: 0.7;">ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。ここにSEOコンテンツが入ります。</p>
+</div>
+</div>
+
 </main>
 <footer class="footer">
 <div class="container py-5">
@@ -24,7 +36,26 @@ get_template_part('template/cta/buttons') ?>
 </p>
 </div>
 <small class="copyright">©<?php echo date('Y'); ?> <?php echo get_option('company-name') ? get_option('company-name') : bloginfo('name'); ?></small>
+
+<a href="#" class="totop">
+<i class="fas fa-chevron-up text-white"></i>
+</a>
 </footer>
+
+<?php if (wp_is_mobile()): ?>
+<div class="sp-foot-menu">
+<?php if (get_option('company-tel')): ?>
+<a class="tel" href="tel:<?php echo get_option('company-tel'); ?>">
+<span class="text-white bg-primary">電話で<br>相談する</span>
+<span><i class="fas fa-phone-volume text-primary"></i><?php echo get_option('company-tel'); ?></span>
+</a>
+<?php endif; ?>
+<?php if (get_option('company-line')): ?>
+<a class="line" href="<?php echo get_option('company-line'); ?>" target="_blank"><span>LINEで<br>相談する</span></a>
+</div>
+<?php endif; ?>
+<?php endif; ?>
+
 <?php wp_footer(); ?>
 
 <?php

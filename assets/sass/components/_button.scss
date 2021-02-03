@@ -28,8 +28,7 @@
       width: calc(100% / 3 - 0.5rem);
       margin-right: 0.5rem;
       margin-bottom: 0.5rem;
-      padding-right: 0.5rem;
-      padding-left: 0.5rem;
+      padding: 0.75rem 0.5rem;
     }
     span {
       display: block;
@@ -38,7 +37,7 @@
       margin-bottom: 5px;
       @include media-breakpoint-down(md) {
         font-size: 12px;
-        margin-bottom: -0.25rem;
+        margin-bottom: 0.25rem;
       }
     }
     svg {
