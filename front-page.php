@@ -31,6 +31,8 @@ $step_4_txt = get_post_meta($page_id, 'step_4_txt', true);
 $company_about =  get_post_meta($page_id, 'company_about', true);
 ?>
 
+<div class="home-warp">
+
 <section class="sec pt-0">
 <div class="container">
 <div class="row">
@@ -435,6 +437,7 @@ $id = $faq->ID;
 </section>
 <!-- #company -->
 
+</div>
 <?php
 // footer
 get_footer();
