@@ -35,8 +35,8 @@ $company_about =  get_post_meta($page_id, 'company_about', true);
 <div class="container">
 <div class="row">
 <div class="col-lg-8">
-<h2 class="heading__h2"><?php echo $catch_ttl; ?></h2>
-<p><?php echo nl2br($catch_txt); ?></p>
+<h2 class="heading__h2" style="font-size:160%"><?php echo $catch_ttl; ?></h2>
+<p style="font-size:110%"><?php echo nl2br($catch_txt); ?></p>
 </div>
 <div class="col-lg-4">
 <div class="review-top bg-light p-4 text-center">
