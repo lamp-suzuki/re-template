@@ -90,6 +90,22 @@ function get_theme_breadcrumb()
     echo '</div>';
 }
 
+/* --------------------------
+  the_archive_title 余計な文字を削除
+ ------------------------- */
+function my_theme_archive_title($title)
+{
+    if (is_post_type_archive() && !is_date()) {
+        $title = post_type_archive_title('', false);
+    } elseif (is_date()) {
+        $date  = single_month_title('', false);
+        $point = strpos($date, '月');
+        $title = mb_substr($date, $point+1).'年'.mb_substr($date, 0, $point+1);
+    }
+    return $title;
+}
+add_filter('get_the_archive_title', 'my_theme_archive_title');
+
 // ページネーション
 function pagenation($pages = '', $range = 4)
 {
