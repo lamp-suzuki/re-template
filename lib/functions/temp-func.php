@@ -51,15 +51,25 @@ function get_theme_breadcrumb()
     $cats = '';
     $cat_id = '';
     if (is_single()) {
+        if (get_post_type() == 'post') {
+            echo '<li><a href="'.home_url().'/blog/">ブログ</a></li>';
+            echo $sep;
+        } elseif (get_post_type() == 'works') {
+            echo '<li><a href="'.home_url().'/works/">作業実績</a></li>';
+            echo $sep;
+        }
         $cats = get_the_category();
         if (isset($cats[0]->term_id)) {
             $cat_id = $cats[0]->term_id;
         }
     } elseif (is_category()) {
+        echo '<li>ブログ</li>';
+        echo $sep;
         $cats = get_queried_object();
         $cat_id = $cats->parent;
     }
-    $cat_list = array();
+
+    $cat_list = [];
     while ($cat_id != 0) {
         $cat = get_category($cat_id);
         $cat_link = get_category_link($cat_id);
@@ -77,7 +87,18 @@ function get_theme_breadcrumb()
             previous_post_link('<li>%link</li>');
             echo $sep;
         }
+        $cats = get_the_terms(get_the_ID(), 'workscat');
+        if (isset($cats[0]->term_id)) {
+            $cat_id = $cats[0]->term_id;
+            $cat_link = get_term_link($cat_id);
+            echo '<li><a href="'.$cat_link.'">'.$cats[0]->name.'</a></li>';
+            echo $sep;
+        }
         the_title('<li>', '</li>');
+    } elseif (is_tax('workscat')) {
+        echo '<li>作業実績</li>';
+        echo $sep;
+        the_archive_title('<li>', '</li>');
     } elseif (is_archive()) {
         the_archive_title('<li>', '</li>');
     } elseif (is_search()) {
@@ -85,26 +106,32 @@ function get_theme_breadcrumb()
     } elseif (is_404()) {
         echo '<li>ページが見つかりません</li>';
     }
+
     echo '</ol>';
     echo '</div>';
     echo '</div>';
 }
 
-/* --------------------------
-  the_archive_title 余計な文字を削除
- ------------------------- */
-function my_theme_archive_title($title)
-{
-    if (is_post_type_archive() && !is_date()) {
+/* the_archive_title 余計な文字を削除 */
+add_filter('get_the_archive_title', function ($title) {
+    if (is_category()) {
+        $title = single_cat_title('', false);
+    } elseif (is_tag()) {
+        $title = single_tag_title('', false);
+    } elseif (is_tax()) {
+        $title = single_term_title('', false);
+    } elseif (is_post_type_archive()) {
         $title = post_type_archive_title('', false);
     } elseif (is_date()) {
-        $date  = single_month_title('', false);
-        $point = strpos($date, '月');
-        $title = mb_substr($date, $point+1).'年'.mb_substr($date, 0, $point+1);
+        $title = get_the_time('Y年n月');
+    } elseif (is_search()) {
+        $title = '検索結果：'.esc_html(get_search_query(false));
+    } elseif (is_404()) {
+        $title = '「404」ページが見つかりません';
+    } else {
     }
     return $title;
-}
-add_filter('get_the_archive_title', 'my_theme_archive_title');
+});
 
 // ページネーション
 function pagenation($pages = '', $range = 4)
