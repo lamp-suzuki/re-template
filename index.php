@@ -4,6 +4,15 @@
 <h2>ブログ</h2>
 </div>
 </div>
+<div class="breadcrumb--wrap">
+<div class="container">
+<ol class="breadcrumb">
+<li><a href="<?php echo home_url(); ?>">トップページ</a></li>
+<li>&gt;</li>
+<li>ブログ</li>
+</ol>
+</div>
+</div>
 <section class="sec">
 <div class="container">
 <div class="row">

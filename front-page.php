@@ -139,7 +139,15 @@ wp_reset_postdata();
 <div class="container">
 <h2 class="heading__h2">サービスの特⻑</h2>
 <div class="post-inner">
+<div class="row mb-4">
+<div class="col-md mb-md-0 mb-3"><img class="" src="https://tesuto.site/re-temp/wp-content/uploads/2021/02/b514a757872180376652641399a699d0.png"></div>
+<div class="col-md"><img class="" src="https://tesuto.site/re-temp/wp-content/uploads/2021/02/29b3b92967bd569bd3c95754ba6ab70c.png"></div>
+</div>
 <?php echo $service_about; ?>
+<div class="py-4 px-3 bg-light mt-3">
+<h4 class="mt-0">見出し4のデザイン</h4>
+この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。
+</div>
 </div>
 <!-- .post-inner -->
 </div>
@@ -410,18 +418,18 @@ if (is_array($faqs) && count($faqs) > 0): ?>
 <h2 class="heading__h2">よくある質問</h2>
 <div class="faq">
 <?php
-foreach ($faqs as $faq):
+foreach ($faqs as $index => $faq):
 setup_postdata($faq);
 $id = $faq->ID;
 ?>
-<div class="faq__box">
+<div class="faq__box <?php echo $index == 0 ? 'active' : ''; ?>">
 <h3>
 <div>
 <span class="text-primary font-weight-bold mr-3">Q</span>
 <span><?php echo get_the_title($id); ?></span>
 </div>
 </h3>
-<div>
+<div <?php echo $index == 0 ? 'style="display: block;"' : ''; ?>>
 <div>
 <span class="font-weight-bold mr-3">A</span>
 <span><?php echo strip_tags(strip_shortcodes(get_the_content())); ?></span>
