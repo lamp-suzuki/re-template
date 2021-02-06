@@ -51,10 +51,7 @@ function get_theme_breadcrumb()
     $cats = '';
     $cat_id = '';
     if (is_single()) {
-        if (get_post_type() == 'post') {
-            echo '<li><a href="'.home_url().'/blog/">ブログ</a></li>';
-            echo $sep;
-        } elseif (get_post_type() == 'works') {
+        if (get_post_type() == 'works') {
             echo '<li><a href="'.home_url().'/works/">作業実績</a></li>';
             echo $sep;
         }
@@ -63,8 +60,6 @@ function get_theme_breadcrumb()
             $cat_id = $cats[0]->term_id;
         }
     } elseif (is_category()) {
-        echo '<li>ブログ</li>';
-        echo $sep;
         $cats = get_queried_object();
         $cat_id = $cats->parent;
     }

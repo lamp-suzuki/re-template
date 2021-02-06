@@ -151,7 +151,6 @@ function insert_frontpage_service()
     global $post;
     $service_about =  get_post_meta($post->ID, 'service_about', true);
     wp_editor($service_about, 'service_about_box', [
-        'quicktags' => false,
         'textarea_name' => 'service_about'
     ]);
 }
@@ -162,7 +161,6 @@ function insert_frontpage_price()
     global $post;
     $price_1 =  get_post_meta($post->ID, 'price_1', true);
     wp_editor($price_1, 'price_1_box', [
-        'quicktags' => false,
         'textarea_name' => 'price_1'
     ]);
 }
@@ -173,7 +171,6 @@ function insert_frontpage_price_sub()
     global $post;
     $price_2 =  get_post_meta($post->ID, 'price_2', true);
     wp_editor($price_2, 'price_2_box', [
-        'quicktags' => false,
         'textarea_name' => 'price_2'
     ]);
 }
@@ -184,7 +181,6 @@ function insert_frontpage_price_other()
     global $post;
     $price_3 =  get_post_meta($post->ID, 'price_3', true);
     wp_editor($price_3, 'price_3_box', [
-        'quicktags' => false,
         'textarea_name' => 'price_3'
     ]);
 }
@@ -244,7 +240,6 @@ function insert_frontpage_about()
     global $post;
     $company_about =  get_post_meta($post->ID, 'company_about', true);
     wp_editor($company_about, 'company_about_box', [
-        'quicktags' => false,
         'textarea_name' => 'company_about'
     ]);
 }

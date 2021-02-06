@@ -19,6 +19,7 @@ set_query_var('title', get_the_title());
 set_query_var('permalink', get_the_permalink());
 set_query_var('category', get_the_terms(get_the_ID(), 'workscat')[0]);
 set_query_var('time', get_the_time('Y/m/d'));
+set_query_var('thumbnail', get_the_post_thumbnail_url(get_the_ID(), 'large'));
 set_query_var('content', wp_strip_all_tags(mb_substr(get_the_content(), 0, 120, 'UTF-8'), true));
 get_template_part('template/post/works-item');
 endwhile; endif; ?>

@@ -140,8 +140,8 @@ wp_reset_postdata();
 <h2 class="heading__h2">サービスの特⻑</h2>
 <div class="post-inner">
 <div class="row mb-4">
-<div class="col-md mb-md-0 mb-3"><img class="" src="https://tesuto.site/re-temp/wp-content/uploads/2021/02/b514a757872180376652641399a699d0.png"></div>
-<div class="col-md"><img class="" src="https://tesuto.site/re-temp/wp-content/uploads/2021/02/29b3b92967bd569bd3c95754ba6ab70c.png"></div>
+<div class="col-md mb-md-0 mb-3"><img src="https://tesuto.site/re-temp/wp-content/uploads/2021/02/b514a757872180376652641399a699d0.png" alt="サービス"></div>
+<div class="col-md"><img src="https://tesuto.site/re-temp/wp-content/uploads/2021/02/29b3b92967bd569bd3c95754ba6ab70c.png" alt="サービス"></div>
 </div>
 <?php echo $service_about; ?>
 <div class="py-4 px-3 bg-light mt-3">
@@ -165,7 +165,6 @@ wp_reset_postdata();
 <div class="col-lg-6">
 <h3>オプション料金</h3>
 <?php echo $price_2; ?>
-</table>
 <h3 class="mt-4">備考</h3>
 <p class="mb-0 bg-white p-4 border"><?php echo nl2br(strip_tags($price_3)); ?></p>
 </div>
@@ -267,16 +266,13 @@ get_review_stars(get_post_meta($review->ID, 'stars', true)); ?>
 </div>
 </div>
 </div>
-<!-- .review-home__box--header -->
 <div class="review-home__box--body">
 <p class="mb-0"><?php echo nl2br(get_post_meta($review->ID, 'review_content', true)); ?></p>
 </div>
 </div>
-<!-- .review-home__box -->
 <?php endforeach; ?>
 <?php wp_reset_postdata(); ?>
 </div>
-<!-- .review-home -->
 </div>
 </section>
 <!-- #review -->
@@ -297,7 +293,11 @@ foreach ($posts as $post) {
     set_query_var('category', get_the_terms(get_the_ID(), 'workscat')[0]);
     set_query_var('time', get_the_time('Y/m/d'));
     set_query_var('content', wp_strip_all_tags(mb_substr(get_the_content(), 0, 120, 'UTF-8'), true));
-    set_query_var('thumbnail', get_the_post_thumbnail_url(get_the_ID(), 'large'));
+    if (wp_is_mobile()) {
+        set_query_var('thumbnail', get_the_post_thumbnail_url(get_the_ID(), 'medium'));
+    } else {
+        set_query_var('thumbnail', get_the_post_thumbnail_url(get_the_ID(), 'large'));
+    }
     get_template_part('template/post/works-item');
 }
 wp_reset_postdata();
@@ -387,7 +387,11 @@ $name = get_the_title($id);
 <div class="staff-home__box">
 <?php if (has_post_thumbnail($id)): ?>
 <div class="thumbnail">
+<?php if (wp_is_mobile()): ?>
+<img src="<?php echo get_the_post_thumbnail_url($id, 'medium'); ?>" alt="<?php echo $name; ?>">
+<?php else: ?>
 <img src="<?php echo get_the_post_thumbnail_url($id, 'large'); ?>" alt="<?php echo $name; ?>">
+<?php endif ?>
 </div>
 <?php endif; ?>
 <div class="text">
@@ -424,10 +428,10 @@ $id = $faq->ID;
 ?>
 <div class="faq__box <?php echo $index == 0 ? 'active' : ''; ?>">
 <h3>
-<div>
+<span>
 <span class="text-primary font-weight-bold mr-3">Q</span>
 <span><?php echo get_the_title($id); ?></span>
-</div>
+</span>
 </h3>
 <div <?php echo $index == 0 ? 'style="display: block;"' : ''; ?>>
 <div>

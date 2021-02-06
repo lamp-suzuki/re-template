@@ -44,4 +44,7 @@ $(function () {
       },
     ],
   });
+
+  $('table').removeAttr('style');
+  $('table').removeAttr('border');
 });

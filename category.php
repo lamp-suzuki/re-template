@@ -11,7 +11,9 @@ get_theme_breadcrumb(); ?>
 <div class="container">
 <div class="row">
 <div class="col-lg-8 mb-lg-0 mb-5">
+<?php if (single_cat_title('', false) != 'ブログ'): ?>
 <h2 class="heading__h2 font-weight-normal"><?php single_cat_title(); ?></h2>
+<?php endif; ?>
 <div class="post-list">
 <?php
 if (have_posts()):
