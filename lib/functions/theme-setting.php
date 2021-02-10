@@ -43,6 +43,20 @@ function themename_theme_customizer($wp_customize)
         )));
     }
 
+    // スライドショー設定
+    $wp_customize->add_section('service_picts', array(
+        'title' => 'サービス画像',
+        'priority' => 30,
+    ));
+    for ($i=1; $i <= 2; $i++) {
+        $wp_customize->add_setting('service_picts_url'.$i);
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'service_picts_url'.$i, array(
+            'label' => 'サービス画像'.$i,
+            'section' => 'service_picts',
+            'settings' => 'service_picts_url'.$i,
+        )));
+    }
+
     // プロフィール写真
     $wp_customize->add_section('profile_pict', array(
         'title' => 'プロフィール写真', //セクション名

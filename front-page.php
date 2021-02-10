@@ -140,14 +140,18 @@ wp_reset_postdata();
 <h2 class="heading__h2">サービスの特⻑</h2>
 <div class="post-inner">
 <div class="row mb-4">
-<div class="col-md mb-md-0 mb-3"><img src="https://tesuto.site/re-temp/wp-content/uploads/2021/02/b514a757872180376652641399a699d0.png" alt="サービス"></div>
-<div class="col-md"><img src="https://tesuto.site/re-temp/wp-content/uploads/2021/02/29b3b92967bd569bd3c95754ba6ab70c.png" alt="サービス"></div>
+<?php if (get_theme_mod('service_picts_url1')): ?>
+<div class="col-md mb-md-0 mb-3">
+<img src="<?php echo get_theme_mod('service_picts_url1'); ?>" alt="サービスの特⻑">
+</div>
+<?php endif; ?>
+<?php if (get_theme_mod('service_picts_url2')): ?>
+<div class="col-md">
+<img src="<?php echo get_theme_mod('service_picts_url2'); ?>" alt="サービスの特⻑">
+</div>
+<?php endif; ?>
 </div>
 <?php echo $service_about; ?>
-<div class="py-4 px-3 bg-light mt-3">
-<h4 class="mt-0">見出し4のデザイン</h4>
-この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。この文章は文字の大きさ文字数などを確認するためのダミー文章です。
-</div>
 </div>
 <!-- .post-inner -->
 </div>
@@ -231,7 +235,7 @@ get_review_stars(get_review_avg()); ?>
 <div class="review-home">
 <?php
 $reviews = get_posts([
-    'posts_per_page' => -1,
+    'posts_per_page' => 4,
     'post_type' => 'review',
 ]);
 foreach ($reviews as $review):
@@ -272,6 +276,9 @@ get_review_stars(get_post_meta($review->ID, 'stars', true)); ?>
 </div>
 <?php endforeach; ?>
 <?php wp_reset_postdata(); ?>
+</div>
+<div class="more-btn text-right">
+<a href="<?php echo home_url(); ?>/review/">もっと見る</a>
 </div>
 </div>
 </section>

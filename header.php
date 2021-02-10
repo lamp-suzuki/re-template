@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<?php if (is_page(['contact', 'privacy-policy'])): ?>
+<?php if (is_page(['contact', 'privacy-policy']) || is_singular(['works','review','faq','staff','area'])): ?>
 <meta name="robots" content="noindex">
 <?php endif; ?>
 

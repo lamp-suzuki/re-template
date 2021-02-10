@@ -251,6 +251,16 @@ function create_theme_manual()
 [submit class:btn class:btn-primary "送信する"]
 &lt;/div&gt;</code>
 </pre>
+<p>フォーム一覧ページでショートコードをコピーしておきます。</p>
+</div>
+<div class="mb-5">
+<h3 class="fw-bold h5">3. 固定ページ作成</h3>
+<p>固定ページを新規作成しお問い合わせフォームを反映する。</p>
+<ul>
+<li>タイトル：<code>お問い合わせ</code></li>
+<li>パーマリンク：<code>contact</code></li>
+</ul>
+<p>「＋」でショートコードを選択しショートコードをペーストする。</p>
 </div>
 </div>
 

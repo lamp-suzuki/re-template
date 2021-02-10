@@ -64,7 +64,7 @@ function custom_post_type()
           ],
           'show_in_rest' => true,
           'public' => true, // 投稿タイプをパブリックにする
-          'has_archive' => false, // アーカイブを有効にする
+          'has_archive' => true, // アーカイブを有効にする
           'hierarchical' => false, // ページ階層の指定
           'menu_position' => 5, // 管理画面上の配置指定
           'supports' => [
@@ -154,3 +154,12 @@ function custom_post_type()
     );
 }
 add_action('init', 'custom_post_type');
+
+// 説明文の追加
+add_filter('admin_post_thumbnail_html', function ($html, $post_id, $thumbnail_id) {
+    $html = <<<HTML
+    {$html}
+    <p class="description">推奨サイズ：380px × 285px</p>
+    HTML;
+    return $html;
+}, 10, 3);
