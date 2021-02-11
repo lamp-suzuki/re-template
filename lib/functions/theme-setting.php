@@ -13,7 +13,7 @@ function themename_theme_customizer($wp_customize)
         'label' => 'ロゴ', //設定ラベル
         'section' => 'logo_section', //セクションID
         'settings' => 'logo_image_url', //セッティングID
-        'description' => '画像をアップロードするとヘッダーにあるデフォルトのサイト名と入れ替わります。',
+        'description' => "画像をアップロードするとヘッダー・フッターにあるデフォルトのサイト名と入れ替わります。\n※推奨サイズ：150px * 50px",
     )));
 
     // スライドショー設定
@@ -27,6 +27,7 @@ function themename_theme_customizer($wp_customize)
             'label' => 'スライドショー'.$i,
             'section' => 'slide_section_pc',
             'settings' => 'pc_slide_image_url_'.$i,
+            'description' => "推奨サイズ：1200px * 650px",
         )));
     }
 
@@ -40,6 +41,7 @@ function themename_theme_customizer($wp_customize)
             'label' => 'スライドショー'.$i,
             'section' => 'slide_section_sp',
             'settings' => 'sp_slide_image_url_'.$i,
+            'description' => "推奨サイズ：750px * 600px",
         )));
     }
 
@@ -54,6 +56,7 @@ function themename_theme_customizer($wp_customize)
             'label' => 'サービス画像'.$i,
             'section' => 'service_picts',
             'settings' => 'service_picts_url'.$i,
+            'description' => "推奨サイズ：580px * 435px",
         )));
     }
 
@@ -61,14 +64,13 @@ function themename_theme_customizer($wp_customize)
     $wp_customize->add_section('profile_pict', array(
         'title' => 'プロフィール写真', //セクション名
         'priority' => 30, //カスタマイザー項目の表示順
-        // 'description' => 'サイトのロゴ設定。', //セクションの説明
     ));
     $wp_customize->add_setting('profile_pict_url');
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'profile_pict_url', array(
         'label' => '写真', //設定ラベル
         'section' => 'profile_pict', //セクションID
         'settings' => 'profile_pict_url', //セッティングID
-        // 'description' => '',
+        'description' => '推奨サイズ：520px * 520px',
     )));
 
     // デフォルトアイキャッチ
@@ -82,7 +84,7 @@ function themename_theme_customizer($wp_customize)
         'label' => 'デフォルトアイキャッチ', //設定ラベル
         'section' => 'default_thumbnail', //セクションID
         'settings' => 'default_thumbnail_url', //セッティングID
-        'description' => 'アイキャッチが設定されていない場合の画像をアップロードください。',
+        'description' => "アイキャッチが設定されていない場合の画像をアップロードください。\n※推奨サイズ：580px * 435px",
     )));
 
     // カラー設定
@@ -94,10 +96,10 @@ function themename_theme_customizer($wp_customize)
         'default' => '#d20000',
         'sanitize_callback' => 'sanitize_hex_color',
     ));
-    $wp_customize->add_setting('secondary_color', array(
-        'default' => '#ffc800',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ));
+    // $wp_customize->add_setting('secondary_color', array(
+    //     'default' => '#ffc800',
+    //     'sanitize_callback' => 'sanitize_hex_color',
+    // ));
 
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'body_color', array(
         'label' => '文字色',
@@ -109,11 +111,11 @@ function themename_theme_customizer($wp_customize)
         'section' => 'colors',
         'priority' => 1,
     )));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'secondary_color', array(
-        'label' => 'サブカラー',
-        'section' => 'colors',
-        'priority' => 2,
-    )));
+    // $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'secondary_color', array(
+    //     'label' => 'サブカラー',
+    //     'section' => 'colors',
+    //     'priority' => 2,
+    // )));
 }
 add_action('customize_register', 'themename_theme_customizer'); //カスタマイザーに登録
 

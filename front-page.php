@@ -29,6 +29,8 @@ $step_3_txt = get_post_meta($page_id, 'step_3_txt', true);
 $step_4_ttl = get_post_meta($page_id, 'step_4_ttl', true);
 $step_4_txt = get_post_meta($page_id, 'step_4_txt', true);
 $company_about =  get_post_meta($page_id, 'company_about', true);
+$g_map =  get_post_meta($page_id, 'g_map', true);
+$g_street =  get_post_meta($page_id, 'g_street', true);
 ?>
 
 <section class="sec pt-0">
@@ -201,13 +203,13 @@ foreach ($areas as $area) {
 ?>
 
 <?php foreach ($area_array as $key => $val): ?>
-<div class="badge-area mb-lg-3 mb-2 mr-lg-3 mr-2 <?php echo $key == 0 ? "active" : ''; ?>" data-id="<?php echo ($key+1); ?>"><?php echo $val['ttl']; ?></div>
+<div class="badge-area mb-lg-3 mb-2 mr-lg-3 mr-2 <?php echo $key == 0 ? "active" : ''; ?>" data-id="<?php echo($key+1); ?>"><?php echo $val['ttl']; ?></div>
 <?php endforeach; ?>
 </div>
 <!-- .badge-area -->
 <p class="m-0">
 <?php foreach ($area_array as $key => $val): ?>
-<span class="<?php echo $key == 0 ? "active" : ''; ?> area-text" data-areaid="<?php echo ($key+1); ?>" style="display: none;"><?php echo $val['txt']; ?></span>
+<span class="<?php echo $key == 0 ? "active" : ''; ?> area-text" data-areaid="<?php echo($key+1); ?>" style="display: none;"><?php echo $val['txt']; ?></span>
 <?php endforeach; ?>
 </p>
 </div>
@@ -462,16 +464,20 @@ $id = $faq->ID;
 <?php echo $company_about; ?>
 
 <div class="row mt-4">
+<?php if ($g_map): ?>
 <div class="col-md">
 <div class="embed-responsive embed-responsive-4by3">
-<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.827853398534!2d139.76493611520053!3d35.68124053757898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1612346091127!5m2!1sja!2sjp"></iframe>
+<?php echo $g_map; ?>
 </div>
 </div>
+<?php endif; ?>
+<?php if ($g_street): ?>
 <div class="col-md mt-md-0 mt-4">
 <div class="embed-responsive embed-responsive-4by3">
-<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!4v1612346316119!6m8!1m7!1sFprQtWX1aNhPgxW1vzj6CQ!2m2!1d35.68114190583712!2d139.7671619642916!3f205.82950039533677!4f0!5f0.7820865974627469"></iframe>
+<?php echo $g_street; ?>
 </div>
 </div>
+<?php endif; ?>
 </div>
 </div>
 </section>

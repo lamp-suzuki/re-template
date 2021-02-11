@@ -46,6 +46,7 @@ function adding_custom_meta_boxes($post_type)
             add_meta_box('frontpage_price_3', '料金備考', 'insert_frontpage_price_other', 'page', 'normal', 'high', );
             add_meta_box('frontpage_step', '作業の流れ', 'insert_frontpage_step', 'page', 'normal', 'high', );
             add_meta_box('frontpage_about', '事業者案内', 'insert_frontpage_about', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_map', 'GoogleMAP', 'insert_frontpage_map', 'page', 'normal', 'high', );
             break;
         case 'works':
             add_meta_box('works_setting', '実績設定', 'insert_works_fields', 'works', 'normal', );
@@ -242,6 +243,24 @@ function insert_frontpage_about()
     wp_editor($company_about, 'company_about_box', [
         'textarea_name' => 'company_about'
     ]);
+}
+
+// MAP
+function insert_frontpage_map()
+{
+    global $post;
+    $g_map =  get_post_meta($post->ID, 'g_map', true);
+    $g_street =  get_post_meta($post->ID, 'g_street', true);
+    echo <<<EOM
+    <div class="custom--guroup">
+    <label class="custom--label" for="g_map">Google Map 埋め込みコード</label>
+    <input type="text" name="g_map" value="$g_map" class="custom--input" id="g_map" placeholder="" />
+    </div>
+    <div class="custom--guroup">
+    <label class="custom--label" for="g_street">Google ストリートビュー 埋め込みコード</label>
+    <input type="text" name="g_street" value="$g_street" class="custom--input" id="g_street" placeholder="" />
+    </div>
+    EOM;
 }
 
 // カスタムフィールドの入力エリア（works）
@@ -453,6 +472,12 @@ function save_custom_fields($post_id)
         }
         if (isset($_POST['company_about'])) {
             update_post_meta($post_id, 'company_about', $_POST['company_about']);
+        }
+        if (isset($_POST['g_map'])) {
+            update_post_meta($post_id, 'g_map', $_POST['g_map']);
+        }
+        if (isset($_POST['g_street'])) {
+            update_post_meta($post_id, 'g_street', $_POST['g_street']);
         }
     }
 

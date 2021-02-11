@@ -19,7 +19,7 @@ get_template_part('template/cta/buttons') ?>
 <a href="<?php echo home_url(); ?>">
 <?php if (get_the_logo_image_url() != null): ?>
 <span>
-<img class="img-fluid" src="<?php echo get_the_logo_image_url(); ?>" alt="<?php bloginfo('name'); ?>">
+<img style="max-width: 150px;max-height:50px" class="img-fluid" src="<?php echo get_the_logo_image_url(); ?>" alt="<?php bloginfo('name'); ?>">
 </span>
 <?php else: ?>
 <span><?php bloginfo('name'); ?></span>
