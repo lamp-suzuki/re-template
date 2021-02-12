@@ -22,7 +22,7 @@ get_template_part('template/cta/buttons') ?>
 <img style="max-width: 150px;max-height:50px" class="img-fluid" src="<?php echo get_the_logo_image_url(); ?>" alt="<?php bloginfo('name'); ?>">
 </span>
 <?php else: ?>
-<span><?php bloginfo('name'); ?></span>
+<span class="text-primary"><?php bloginfo('name'); ?></span>
 <?php endif; ?>
 </a>
 </h2>

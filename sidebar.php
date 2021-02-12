@@ -26,8 +26,4 @@ foreach ($categories as $cat): ?>
 <?php endforeach; ?>
 </ul>
 </div>
-
-<?php if (is_active_sidebar('sidebar')) {
-    dynamic_sidebar('sidebar');
-} ?>
 </div>

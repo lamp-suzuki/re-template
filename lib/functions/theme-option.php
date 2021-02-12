@@ -64,9 +64,6 @@ function create_reeight_settings_page()
 <li class="nav-item mb-0" role="presentation">
 <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">会社情報</a>
 </li>
-<!-- <li class="nav-item mb-0" role="presentation">
-<a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">プロフィール</a>
-</li> -->
 </ul>
 
 <form class="p-3 pb-0 bg-white rounded-bottom border border-1 border-top-0" method="post" action="options.php" enctype="multipart/form-data" encoding="multipart/form-data">
@@ -83,19 +80,19 @@ do_settings_sections('reeight-settings'); ?>
 <div class="mb-4 row">
 <label for="company-name" class="fw-bold col-sm-3 col-form-label">会社名</label>
 <div class="col-sm-9">
-<input type="text" class="form-control" id="company-name" name="company-name"  placeholder="株式会社〇〇〇〇" value="<?php echo get_option('company-name'); ?>">
+<input type="text" class="form-control" id="company-name" name="company-name"  placeholder="株式会社〇〇〇〇" value="<?php echo get_option('company-name') ? get_option('company-name') : '株式会社〇〇'; ?>">
 </div>
 </div>
 <div class="mb-4 row">
 <label for="company-email" class="fw-bold col-sm-3 col-form-label">メールアドレス</label>
 <div class="col-sm-9">
-<input type="email" class="form-control" id="company-email" name="company-email" placeholder="info@example.com" value="<?php echo get_option('company-email'); ?>">
+<input type="email" class="form-control" id="company-email" name="company-email" placeholder="info@example.com" value="<?php echo get_option('company-email') ? get_option('company-email') : 'info@example.com'; ?>">
 </div>
 </div>
 <div class="mb-4 row">
 <label for="company-tel" class="fw-bold col-sm-3 col-form-label">電話番号</label>
 <div class="col-sm-9">
-<input type="tel" class="form-control" id="company-tel" name="company-tel" placeholder="000-000-0000" value="<?php echo get_option('company-tel'); ?>">
+<input type="tel" class="form-control" id="company-tel" name="company-tel" placeholder="000-000-0000" value="<?php echo get_option('company-tel') ? get_option('company-tel') : ''; ?>">
 </div>
 </div>
 <div class="mb-4 row">

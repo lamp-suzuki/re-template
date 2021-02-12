@@ -35,9 +35,4 @@ wp_get_archives($args);
 ?>
 </ul>
 </div>
-
-<?php if (is_active_sidebar('sidebar-works')): ?>
-<?php dynamic_sidebar('sidebar-works'); ?>
-<?php endif; ?>
-
 </div>
