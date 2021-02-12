@@ -92,7 +92,7 @@ do_settings_sections('reeight-settings'); ?>
 <div class="mb-4 row">
 <label for="company-tel" class="fw-bold col-sm-3 col-form-label">電話番号</label>
 <div class="col-sm-9">
-<input type="tel" class="form-control" id="company-tel" name="company-tel" placeholder="000-000-0000" value="<?php echo get_option('company-tel') ? get_option('company-tel') : ''; ?>">
+<input type="tel" class="form-control" id="company-tel" name="company-tel" placeholder="000-000-0000" value="<?php echo get_option('company-tel') ? get_option('company-tel') : '0120-000-000'; ?>">
 </div>
 </div>
 <div class="mb-4 row">
