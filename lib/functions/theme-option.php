@@ -176,10 +176,6 @@ function create_theme_manual()
 <td><code>contact</code></td>
 </tr>
 <tr>
-<td>ブログ</td>
-<td><code>blog</code></td>
-</tr>
-<tr>
 <td>プライバシーポリシー</td>
 <td><code>privacy-policy</code></td>
 </tr>
@@ -192,17 +188,21 @@ function create_theme_manual()
 <p>「設定」の「表示設定」より「<b>ホームページの表示</b>」を「<b>固定ページ</b>」に変更。</p>
 <ul>
 <li>ホームページ：<code>トップページ</code></li>
-<li>投稿ページ：<code>ブログ</code></li>
 </ul>
 </div>
 
 <div class="mb-5">
-<h3 class="fw-bold h5">3. パーマリンク設定</h3>
+<h3 class="fw-bold h5">3. 投稿カテゴリー設定</h3>
+<p>「カテゴリー」より「未分類」を「タイトル：ブログ、スラッグ：blog」に変更し保存。</p>
+</div>
+
+<div class="mb-5">
+<h3 class="fw-bold h5">4. パーマリンク設定</h3>
 <p>「設定」の「パーマリンク設定」より「カスタム構造」を選択。内容を「<code>/%category%/%postname%/</code>」に変更し保存。</p>
 </div>
 
 <div class="mb-5">
-<h3 class="fw-bold h5">4. 外観カスタマイズ</h3>
+<h3 class="fw-bold h5">5. 外観カスタマイズ</h3>
 <p>「外観」の「カスタマイズ」より、<code>ロゴ</code>・<code>デフォルトアイキャッチ</code>・<code>色</code>を編集してください。</p>
 </div>
 

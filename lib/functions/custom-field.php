@@ -47,6 +47,7 @@ function adding_custom_meta_boxes($post_type)
             add_meta_box('frontpage_step', '作業の流れ', 'insert_frontpage_step', 'page', 'normal', 'high', );
             add_meta_box('frontpage_about', '事業者案内', 'insert_frontpage_about', 'page', 'normal', 'high', );
             add_meta_box('frontpage_map', 'GoogleMAP', 'insert_frontpage_map', 'page', 'normal', 'high', );
+            add_meta_box('frontpage_seo', 'SEOコンテンツ', 'insert_frontpage_seo', 'page', 'normal', 'high', );
             break;
         case 'works':
             add_meta_box('works_setting', '実績設定', 'insert_works_fields', 'works', 'normal', );
@@ -83,8 +84,8 @@ function insert_frontpage_catchcopy()
 {
     global $post;
 
-    $catch_ttl = get_post_meta($post->ID, 'catch_ttl', true);
-    $catch_txt = get_post_meta($post->ID, 'catch_txt', true);
+    $catch_ttl = get_post_meta($post->ID, 'catch_ttl', true) ? get_post_meta($post->ID, 'catch_ttl', true) : 'キャッチコピー キャッチコピーキャッチコピー(25文字以内)';
+    $catch_txt = get_post_meta($post->ID, 'catch_txt', true) ? get_post_meta($post->ID, 'catch_txt', true) : 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、(50文字以内)';
 
     echo <<<EOM
     <div class="custom--guroup">
@@ -102,9 +103,9 @@ function insert_frontpage_catchcopy()
 function insert_frontpage_appeal()
 {
     global $post;
-    $appeal_1 = get_post_meta($post->ID, 'appeal_1', true);
-    $appeal_2 = get_post_meta($post->ID, 'appeal_2', true);
-    $appeal_3 = get_post_meta($post->ID, 'appeal_3', true);
+    $appeal_1 = get_post_meta($post->ID, 'appeal_1', true) ? get_post_meta($post->ID, 'appeal_1', true) : 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(25文字以内)';
+    $appeal_2 = get_post_meta($post->ID, 'appeal_2', true) ? get_post_meta($post->ID, 'appeal_2', true) : 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(25文字以内)';
+    $appeal_3 = get_post_meta($post->ID, 'appeal_3', true) ? get_post_meta($post->ID, 'appeal_3', true) : 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。(25文字以内)';
 
     echo <<<EOM
     <div class="custom--guroup">
@@ -126,9 +127,9 @@ function insert_frontpage_appeal()
 function insert_frontpage_greeting()
 {
     global $post;
-    $position = get_post_meta($post->ID, 'position', true);
-    $position_name = get_post_meta($post->ID, 'position_name', true);
-    $greeting = get_post_meta($post->ID, 'greeting', true);
+    $position = get_post_meta($post->ID, 'position', true) ? get_post_meta($post->ID, 'position', true) : '店長';
+    $position_name = get_post_meta($post->ID, 'position_name', true) ? get_post_meta($post->ID, 'position_name', true) : '山田 太郎';
+    $greeting = get_post_meta($post->ID, 'greeting', true) ? get_post_meta($post->ID, 'greeting', true) : 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。';
 
     echo <<<EOM
     <div class="custom--guroup">
@@ -160,7 +161,7 @@ function insert_frontpage_service()
 function insert_frontpage_price()
 {
     global $post;
-    $price_1 =  get_post_meta($post->ID, 'price_1', true);
+    $price_1 =  get_post_meta($post->ID, 'price_1', true) ? get_post_meta($post->ID, 'price_1', true) : '<table><tbody><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr></tbody></table>';
     wp_editor($price_1, 'price_1_box', [
         'textarea_name' => 'price_1'
     ]);
@@ -170,7 +171,7 @@ function insert_frontpage_price()
 function insert_frontpage_price_sub()
 {
     global $post;
-    $price_2 =  get_post_meta($post->ID, 'price_2', true);
+    $price_2 =  get_post_meta($post->ID, 'price_2', true) ? get_post_meta($post->ID, 'price_2', true) : '<table><tbody><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr><tr><td>テキスト</td><td>10,000円(税込)</td></tr></tbody></table>';
     wp_editor($price_2, 'price_2_box', [
         'textarea_name' => 'price_2'
     ]);
@@ -180,7 +181,7 @@ function insert_frontpage_price_sub()
 function insert_frontpage_price_other()
 {
     global $post;
-    $price_3 =  get_post_meta($post->ID, 'price_3', true);
+    $price_3 =  get_post_meta($post->ID, 'price_3', true) ? get_post_meta($post->ID, 'price_3', true) : 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。(200文字以内)';
     wp_editor($price_3, 'price_3_box', [
         'textarea_name' => 'price_3'
     ]);
@@ -190,14 +191,14 @@ function insert_frontpage_price_other()
 function insert_frontpage_step()
 {
     global $post;
-    $step_1_ttl = get_post_meta($post->ID, 'step_1_ttl', true);
-    $step_1_txt = get_post_meta($post->ID, 'step_1_txt', true);
-    $step_2_ttl = get_post_meta($post->ID, 'step_2_ttl', true);
-    $step_2_txt = get_post_meta($post->ID, 'step_2_txt', true);
-    $step_3_ttl = get_post_meta($post->ID, 'step_3_ttl', true);
-    $step_3_txt = get_post_meta($post->ID, 'step_3_txt', true);
-    $step_4_ttl = get_post_meta($post->ID, 'step_4_ttl', true);
-    $step_4_txt = get_post_meta($post->ID, 'step_4_txt', true);
+    $step_1_ttl = get_post_meta($post->ID, 'step_1_ttl', true) ? get_post_meta($post->ID, 'step_1_ttl', true) : 'お問い合わせ';
+    $step_1_txt = get_post_meta($post->ID, 'step_1_txt', true) ? get_post_meta($post->ID, 'step_1_txt', true) : 'お電話もしくはご相談フォームからお気軽にお問い合わせください。';
+    $step_2_ttl = get_post_meta($post->ID, 'step_2_ttl', true) ? get_post_meta($post->ID, 'step_2_ttl', true) : 'お見積り';
+    $step_2_txt = get_post_meta($post->ID, 'step_2_txt', true) ? get_post_meta($post->ID, 'step_2_txt', true) : 'お電話で必要事項をお伺いし概算でお見積りをご提示させて頂きます。ただ詳細なお見積りに関しては現場調査が必要となります。';
+    $step_3_ttl = get_post_meta($post->ID, 'step_3_ttl', true) ? get_post_meta($post->ID, 'step_3_ttl', true) : '作業開始';
+    $step_3_txt = get_post_meta($post->ID, 'step_3_txt', true) ? get_post_meta($post->ID, 'step_3_txt', true) : 'お見積り内容にご納得頂ければ、作業日時を決め、作業を開始します。';
+    $step_4_ttl = get_post_meta($post->ID, 'step_4_ttl', true) ? get_post_meta($post->ID, 'step_4_ttl', true) : 'お支払い';
+    $step_4_txt = get_post_meta($post->ID, 'step_4_txt', true) ? get_post_meta($post->ID, 'step_4_txt', true) : '作業完了後、現場を確認して頂き、問題なければ、お支払いとなります。';
 
     echo <<<EOM
     <div class="custom--guroup">
@@ -239,7 +240,7 @@ function insert_frontpage_step()
 function insert_frontpage_about()
 {
     global $post;
-    $company_about =  get_post_meta($post->ID, 'company_about', true);
+    $company_about =  get_post_meta($post->ID, 'company_about', true) ? get_post_meta($post->ID, 'company_about', true) : '<table><tbody><tr><td>事業者名</td><td>文字の大きさ、量、字間、行間等を確認するために入れています。</td></tr><tr><td>電話番号</td><td>文字の大きさ、量、字間、行間等を確認するために入れています。</td></tr><tr><td>所在地</td><td>文字の大きさ、量、字間、行間等を確認するために入れています。</td></tr><tr><td>営業時間</td><td>文字の大きさ、量、字間、行間等を確認するために入れています。</td></tr><tr><td>定休日</td><td>文字の大きさ、量、字間、行間等を確認するために入れています。</td></tr><tr><td>テキスト</td><td>文字の大きさ、量、字間、行間等を確認するために入れています。</td></tr></tbody></table>';
     wp_editor($company_about, 'company_about_box', [
         'textarea_name' => 'company_about'
     ]);
@@ -249,8 +250,8 @@ function insert_frontpage_about()
 function insert_frontpage_map()
 {
     global $post;
-    $g_map =  get_post_meta($post->ID, 'g_map', true);
-    $g_street =  get_post_meta($post->ID, 'g_street', true);
+    $g_map =  htmlspecialchars(get_post_meta($post->ID, 'g_map', true));
+    $g_street =  htmlspecialchars(get_post_meta($post->ID, 'g_street', true));
     echo <<<EOM
     <div class="custom--guroup">
     <label class="custom--label" for="g_map">Google Map 埋め込みコード</label>
@@ -259,6 +260,19 @@ function insert_frontpage_map()
     <div class="custom--guroup">
     <label class="custom--label" for="g_street">Google ストリートビュー 埋め込みコード</label>
     <input type="text" name="g_street" value="$g_street" class="custom--input" id="g_street" placeholder="" />
+    </div>
+    EOM;
+}
+
+// seo
+function insert_frontpage_seo()
+{
+    global $post;
+    $seo =  get_post_meta($post->ID, 'seo_text', true);
+    echo <<<EOM
+    <div class="custom--guroup">
+    <label class="custom--label" for="seo_text">SEOコンテンツ</label>
+    <textarea name="seo_text" id="seo_text" class="custom--input" placeholder="50文字以内">$seo</textarea>
     </div>
     EOM;
 }
@@ -478,6 +492,9 @@ function save_custom_fields($post_id)
         }
         if (isset($_POST['g_street'])) {
             update_post_meta($post_id, 'g_street', $_POST['g_street']);
+        }
+        if (isset($_POST['seo_text'])) {
+            update_post_meta($post_id, 'seo_text', $_POST['seo_text']);
         }
     }
 
