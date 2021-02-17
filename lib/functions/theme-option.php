@@ -217,6 +217,7 @@ function create_theme_manual()
 <h3 class="fw-bold h5">2. お問い合わせフォームの作成</h3>
 <p>「お問い合わせ」設定よりフォームを選択。下記内容をコピーしてフォームの内容にペーストしてください。</p>
 <pre class="d-block p-2 rounded bg-light">
+<span class="d-block">フォーム内容</span>
 <code class="bg-light">&lt;label class="must"&gt;お名前&lt;/label&gt;
 [text* your-name class:form-control]
 &lt;label class="must"&gt;所在地&lt;/label&gt;
@@ -247,6 +248,17 @@ function create_theme_manual()
 &lt;div class="text-center mt-5"&gt;
 [submit class:btn class:btn-primary "送信する"]
 &lt;/div&gt;</code>
+<span class="mt-4 d-block">メール</span>
+<code>氏名: [your-name]
+メールアドレス: [your-email]
+電話番号: [your-tel]
+所在地: [your-pref]
+市区町村: [your-address]
+
+ご相談項目: [your-subject]
+
+ご相談内容
+[your-message]</code>
 </pre>
 <p>フォーム一覧ページでショートコードをコピーしておきます。</p>
 </div>

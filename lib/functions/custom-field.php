@@ -272,7 +272,7 @@ function insert_frontpage_seo()
     echo <<<EOM
     <div class="custom--guroup">
     <label class="custom--label" for="seo_text">SEOコンテンツ</label>
-    <textarea name="seo_text" id="seo_text" class="custom--input" placeholder="50文字以内">$seo</textarea>
+    <textarea name="seo_text" id="seo_text" class="custom--input" placeholder="推奨文字数：1500文字">$seo</textarea>
     </div>
     EOM;
 }
